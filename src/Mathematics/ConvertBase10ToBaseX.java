@@ -4,8 +4,6 @@ package Mathematics;
  * This class will be useful to retrieve piece of bits from 32 bit integer.
  * This will be useful to form TRIE from the hashcode value of object. 
  * 
- * @author I311774
- *
  */
 public class ConvertBase10ToBaseX {
 	enum Base {
@@ -13,7 +11,7 @@ public class ConvertBase10ToBaseX {
 		 * Integer is represented in 32 bit in 32 bit machine.
 		 * There we can split this integer no of bits into multiples of 1,2,4,8,16 bits
 		 */
-		BASE2(1,1,32), BASE4(3,2,16), /*BASE10(3,2),*/ 
+		BASE2(1,1,32), BASE4(3,2,16), BASE8(7,3,11)/* OCTAL*/, /*BASE10(3,2),*/ 
 		BASE16(15, 4, 8){		
 			public String getFormattedValue(int val){
 				switch(val) {
@@ -133,12 +131,13 @@ public class ConvertBase10ToBaseX {
 	public static void main(String[] args) {
 		ConvertBase10ToBaseX obj = new ConvertBase10ToBaseX();
 		
-		obj.getBaseXValueOn(Base.BASE16,15); 
-		obj.getBaseXValueOn(Base.BASE16,300); 
-		obj.getBaseXValueOn(Base.BASE16,7); 
-		obj.getBaseXValueOn(Base.BASE16,7);
+		obj.getBaseXValueOn(Base.BASE16,12456); 
+//		obj.getBaseXValueOn(Base.BASE16,300); 
+//		obj.getBaseXValueOn(Base.BASE16,7); 
+//		obj.getBaseXValueOn(Base.BASE16,7);
 		
-		obj.getBaseXValueOn(Base.BASE2,7);
+		obj.getBaseXValueOn(Base.BASE2,12456);
+		obj.getBaseXValueOn(Base.BASE8,12456);
 		obj.getBaseXValueOn(Base.BASE2,8);
 		obj.getBaseXValueOn(Base.BASE2,9);
 		obj.getBaseXValueOn(Base.BASE2,10);

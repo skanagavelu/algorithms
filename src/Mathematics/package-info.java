@@ -6,3 +6,10 @@
  *
  */
 package Mathematics;
+/*
+ *  Divisor
+ *  Dividend
+ *  remainder
+ *  Quotient
+ *  
+ */
