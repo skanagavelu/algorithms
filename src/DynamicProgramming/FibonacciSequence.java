@@ -37,7 +37,7 @@ public class FibonacciSequence {
     		return fibArray[v];
     	}
     	else {
-    		fibArray[v] = printFibTop2Bottom(v-1) + printFibTop2Bottom(v-2);
+    		fibArray[v] = fibArray[v-1] + fibArray[v-2];
     		System.out.print(fibArray[v] + ", ");
     		return fibArray[v];
     	}
