@@ -1,4 +1,4 @@
-package Tree;
+package tree;
 
 import java.util.Comparator;
 import java.util.concurrent.atomic.AtomicInteger;
