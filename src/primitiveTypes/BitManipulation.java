@@ -1,4 +1,4 @@
-package own.primitiveTypes;
+package primitiveTypes;
 
 public class BitManipulation {
 	public static void main(String[] args) {
