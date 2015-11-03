@@ -1,8 +1,8 @@
-package Mathematics;
+package mathematics;
 
 import java.util.BitSet;
 
-import Mathematics.ConvertBase10ToBaseX.Base;
+import mathematics.ConvertBase10ToBaseX.Base;
 
 /**
  * 

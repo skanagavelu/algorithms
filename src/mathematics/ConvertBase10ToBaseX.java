@@ -1,4 +1,4 @@
-package Mathematics;
+package mathematics;
 
 /**
  * This class will be useful to retrieve piece of bits from 32 bit integer.
@@ -131,12 +131,13 @@ public class ConvertBase10ToBaseX {
 	public static void main(String[] args) {
 		ConvertBase10ToBaseX obj = new ConvertBase10ToBaseX();
 		
-		obj.getBaseXValueOn(Base.BASE16,12456); 
+		obj.getBaseXValueOn(Base.BASE2,-1392490240); //(-1392490240 < 0 ? ((-1392490240)-1) : 1392490240)); 
+		System.out.println(obj.getBaseXValueOnAtLevel(Base.BASE8, -12, 3)); 
 //		obj.getBaseXValueOn(Base.BASE16,300); 
 //		obj.getBaseXValueOn(Base.BASE16,7); 
 //		obj.getBaseXValueOn(Base.BASE16,7);
 		
-		obj.getBaseXValueOn(Base.BASE2,12456);
+		/*obj.getBaseXValueOn(Base.BASE2,12456);
 		obj.getBaseXValueOn(Base.BASE8,12456);
 		obj.getBaseXValueOn(Base.BASE2,8);
 		obj.getBaseXValueOn(Base.BASE2,9);
@@ -164,7 +165,7 @@ public class ConvertBase10ToBaseX {
 		System.out.println(obj.getBaseXValueOnAtLevel(Base.BASE256, 511, 2)); 
 		System.out.println(obj.getBaseXValueOnAtLevel(Base.BASE256, 512, 1));
 		System.out.println(obj.getBaseXValueOnAtLevel(Base.BASE256, 512, 2)); 
-		System.out.println(obj.getBaseXValueOnAtLevel(Base.BASE256, 513, 2)); 
+		System.out.println(obj.getBaseXValueOnAtLevel(Base.BASE256, 513, 2)); */
 		
 		
 	}
