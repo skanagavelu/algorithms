@@ -38,7 +38,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class InOrderTraversalIterative {
 	public static void main(String[] args) {
-		BTNode<String> rt = new BTNode<String>();
+		BTNode<String> rt;
 		String[] dataArray = {"1","2","3","4","#","#","5","#","#","6","#","#","7","8","9","10","#","#","11","#","#","#","#"};
 		rt = BTNode.buildBTWithPreOrder(dataArray, new AtomicInteger(0));
 		BTDisplay.printTreeNode(rt);

@@ -3,14 +3,21 @@ package tree;
 import java.util.Comparator;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * 
+ * This node is used in both in binary tree as well as binary search tree.
+ * To support BST; it is declared with data T which extends Comparable<T>  
+ * 
+ * There are utility methods available in this class to build the tree.
+ * 
+ * @author ksugumar
+ *
+ * @param <T> is data this node holds.
+ */
 public class BTNode<T extends Comparable<T>> {
 	public BTNode<T> left;
 	public BTNode<T> right;
 	public T data;
-	
-	public BTNode() {
-		
-	}
 	
 	public BTNode(T data) {
 		super();
@@ -23,7 +30,7 @@ public class BTNode<T extends Comparable<T>> {
 	}
 	
 	public static void main(String[] args) {
-		BTNode<String> rt = new BTNode<String>();
+		BTNode<String> rt;
 //		rt.data = "5";
 //		rt.left = new BTNode<String>();
 //		rt.left.data = "10";
@@ -67,11 +74,8 @@ public class BTNode<T extends Comparable<T>> {
         if(root == null || root.data.equals(data)) {
         	return root;
         }
-        BTNode<T> foundNode =  findBTNodeForData(root.left, data);
-        if(foundNode == null) {
-        	foundNode = findBTNodeForData(root.right, data);
-        }
-		return foundNode;
+        //TODO
+		return null;
 	}
 	
 
@@ -82,7 +86,6 @@ public class BTNode<T extends Comparable<T>> {
 		public int compare(BTNode<T> o1, BTNode<T> o2) {
 			return o1.data.compareTo(o2.data);
 		}
-		
 	}
 	
 	
