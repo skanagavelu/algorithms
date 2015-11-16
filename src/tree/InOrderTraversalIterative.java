@@ -25,6 +25,7 @@ public class InOrderTraversalIterative {
 				continue;
 			}
 			
+			//Traverse Left
 			if(!node.leftVisited) {
 				node.leftVisited = true;
 				if (root.left != null) {
@@ -36,8 +37,9 @@ public class InOrderTraversalIterative {
 				}
 			} 
 			
-			System.out.println(root.data);
+			System.out.println(root.data); //Visit the node.
 			
+			//Traverse RIGHT
 			if(!node.rightVisited) {
 				node.rightVisited = true;
 				if (root.right != null) {
@@ -48,7 +50,6 @@ public class InOrderTraversalIterative {
 					continue;
 				}
 			}
-			
 		}
 	}
 }
