@@ -4,11 +4,35 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * This code will ensure holding of chain(links) of nodes from the root to till the level of the tree.
- * So height of the tree is the number of extra nodes in the memory other than tree.
- * 
- * This chain is the parent chain for any node from the top to till its immediate parent.
+ * The number of extra nodes in the memory (other than tree) is height of the tree.
+ * I haven't used java stack instead used this ParentChain. 
+ * This parent chain is the link for any node from the top(root node) to till its immediate parent.
  * This code will not require any altering of existing BinaryTree (NO flag/parent on all the nodes).
  *  
+ *  while visiting the Node 11; ParentChain will be holding the nodes 9 -> 8 -> 7 -> 1 where (-> is parent)
+ *  
+ *             1                               
+              / \               
+             /   \              
+            /     \             
+           /       \            
+          /         \           
+         /           \          
+        /             \         
+       /               \        
+       2               7               
+      / \             /         
+     /   \           /          
+    /     \         /           
+   /       \       /            
+   3       6       8               
+  / \             /             
+ /   \           /              
+ 4   5           9               
+                / \             
+                10 11
+                     
+ *               
  * @author ksugumar
  *
  */
