@@ -2,6 +2,16 @@ package tree;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * This code will ensure holding of chain(links) of nodes from the root to till the level of the tree.
+ * So maximum height of the tree is extra nodes in the memory other than tree.
+ * 
+ * This chain is the parent chain for any node from the top to till its immediate parent.
+ * This code will not require any altering of existing BinaryTree (NO flag/parent on all the nodes.
+ *  
+ * @author ksugumar
+ *
+ */
 public class InOrderTraversalIterative {
 	public static void main(String[] args) {
 		BTNode<String> rt = new BTNode<String>();
