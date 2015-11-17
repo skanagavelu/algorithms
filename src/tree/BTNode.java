@@ -70,12 +70,19 @@ public class BTNode<T extends Comparable<T>> {
 	
 	
 	//Since binary Search tree is sorted, we search node in log n time.
-	public static <T extends Comparable<T>>  BTNode<T> findBSTNodeForData(BTNode<T> root, T data){
-        if(root == null || root.data.equals(data)) {
-        	return root;
+	public static <T extends Comparable<T>> BTNode<T> findBSTNodeForData(
+			BTNode<T> root, T data) {
+		if (root == null || root.data.equals(data)) {
+			return root;
+		}
+        
+        if (root.data.compareTo(data) > 0)
+        {
+        	return findBSTNodeForData(root.left, data);
+        } else {
+        	return findBSTNodeForData(root.right, data);
         }
-        //TODO
-		return null;
+
 	}
 	
 
