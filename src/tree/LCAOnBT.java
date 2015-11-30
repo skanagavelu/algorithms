@@ -4,7 +4,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class LCAOnBT {
 	public static void main(String[] args) {
-		String[] dataArray = {"1","2","3","4",null,null,"5",null,null,"6","7",null,null,"8",null,null,"9","10","11","12",null,null,"13",null,null,"14",null,null, "15", "16", null, null, "17", null, null};
+		String[] dataArray = {"1","2","3","4",null,null,"5",null,null,"6","7",null,null,"8",null,null,
+				"9","10","11","12",null,null,"13",null,null,"14",null,null, "15", "16", null, null, "17", null, null};
 		BTNode<String> rt = BTNode.buildBTWithPreOrder(dataArray, new AtomicInteger(0));
 		BTNode<String> one = BTNode.findBTNodeForData(rt, "2");
 		BTNode<String> two = BTNode.findBTNodeForData(rt, "6");
