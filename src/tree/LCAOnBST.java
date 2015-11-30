@@ -15,7 +15,7 @@ public class LCAOnBST {
 		System.out.println(lca);
 	}
 	
-	public static BTNode<Integer> findLCAOnBinarySearchTree_Iterative(BTNode<Integer> root, BTNode<Integer> one, BTNode<Integer> two) {
+	public static <T extends Comparable<T>> BTNode<T> findLCAOnBinarySearchTree_Iterative(BTNode<T> root, BTNode<T> one, BTNode<T> two) {
 		while(root != null) {
 			if(root.data.compareTo(one.data) > 0 && root.data.compareTo(two.data) > 0) {
 				root = root.left;
