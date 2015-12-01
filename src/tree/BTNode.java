@@ -1,6 +1,8 @@
 package tree;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -37,13 +39,17 @@ public class BTNode<T extends Comparable<T>> {
 //		rt.right = new BTNode<String>();
 //		rt.right.data = "20";
 		String[] dataArray = {"1","2","3","4",null,null,"5",null,null,"6",null,null,"7","8","9","10",null,null,"11",null,null,null,null};
+//		String[] dataArray = {"1","2","3","4"};
 		rt = buildBTWithPreOrder(dataArray, new AtomicInteger(0));
 		BTDisplay.printTreeNode(rt);
+		List a = new ArrayList();
+		buildDataArryaWithPreOrder(rt, a, new AtomicInteger(0));
+		System.out.println(a);
 	}
 	
 
 	public static <T extends Comparable<T>> BTNode<T> buildBTWithPreOrder(T[] dataArray, AtomicInteger i){
-		if(i.get() > dataArray.length || dataArray[i.get()] == null) {
+		if(dataArray[i.get()] == null) {
 			return null;
 		}
 		BTNode<T> node = new BTNode<T>(dataArray[i.get()]);
@@ -52,6 +58,20 @@ public class BTNode<T extends Comparable<T>> {
 		i.incrementAndGet();
 		node.right = buildBTWithPreOrder(dataArray, i);
 		return node;
+	}
+	
+	
+	public static <T extends Comparable<T>>  void buildDataArryaWithPreOrder(BTNode<T> root, List<T> dataArray, AtomicInteger i){
+        if(root == null) {
+        	dataArray.add(null);
+        	i.incrementAndGet();
+        	return;
+        }
+        dataArray.add(root.data);
+    	i.incrementAndGet();
+    	buildDataArryaWithPreOrder(root.left, dataArray, i);
+		i.incrementAndGet();
+		buildDataArryaWithPreOrder(root.right, dataArray, i);
 	}
 	
 	
