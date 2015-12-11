@@ -7,7 +7,7 @@ public class LCAOnBST {
 	public static void main(String[] args) {
 		Integer[] dataArray = {4, 2, 1, null, null, 3, null, null, 6, 5, null,
 				null, 8,7,null,null,10,null,null};
-		BTNode<Integer> rt = BTNode.buildBTWithPreOrder(dataArray, new AtomicInteger(0));
+		BTNode<Integer> rt = BTNode.buildBTWithPreOrder(dataArray, new Counter(0));
 		BTNode<Integer> one = BTNode.findBTNodeForData(rt, 2);
 		BTNode<Integer> two = BTNode.findBTNodeForData(rt, 3);
 		BTDisplay.printTreeNode(rt);

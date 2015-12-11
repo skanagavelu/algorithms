@@ -31,14 +31,14 @@ public class BT2DLL {
 		
 		//Build Tree from dataArray using PreOrder
 		BTNode<String> root = BTNode.buildBTWithPreOrder(dataArray,
-				new AtomicInteger(0));
+				new Counter(0));
 		System.out.println("Tree built using PreOrder:");
 		BTDisplay.printTreeNode(root);
 		System.out.println();
 		
 		//Rebuild dataArray from Tree using PreOrder
 		List a = new ArrayList();
-		BTNode.buildDataArryaWithPreOrder(root, a, new AtomicInteger(0));
+		BTNode.buildDataArryaWithPreOrder(root, a, new Counter(0));
 		System.out.println(a);
 		
 		

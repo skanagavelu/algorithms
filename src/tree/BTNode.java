@@ -40,15 +40,15 @@ public class BTNode<T extends Comparable<T>> {
 //		rt.right.data = "20";
 		String[] dataArray = {"1","2","3","4",null,null,"5",null,null,"6",null,null,"7","8","9","10",null,null,"11",null,null,null,null};
 //		String[] dataArray = {"1","2","3","4"};
-		rt = buildBTWithPreOrder(dataArray, new AtomicInteger(0));
+		rt = buildBTWithPreOrder(dataArray, new Counter(0));
 		BTDisplay.printTreeNode(rt);
 		List a = new ArrayList();
-		buildDataArryaWithPreOrder(rt, a, new AtomicInteger(0));
+		buildDataArryaWithPreOrder(rt, a, new Counter(0));
 		System.out.println(a);
 	}
 	
 
-	public static <T extends Comparable<T>> BTNode<T> buildBTWithPreOrder(T[] dataArray, AtomicInteger i){
+	public static <T extends Comparable<T>> BTNode<T> buildBTWithPreOrder(T[] dataArray, Counter i){
 		if(dataArray[i.get()] == null) {
 			return null;
 		}
@@ -61,7 +61,7 @@ public class BTNode<T extends Comparable<T>> {
 	}
 	
 	
-	public static <T extends Comparable<T>>  void buildDataArryaWithPreOrder(BTNode<T> root, List<T> dataArray, AtomicInteger i){
+	public static <T extends Comparable<T>>  void buildDataArryaWithPreOrder(BTNode<T> root, List<T> dataArray, Counter i){
         if(root == null) {
         	dataArray.add(null);
         	i.incrementAndGet();

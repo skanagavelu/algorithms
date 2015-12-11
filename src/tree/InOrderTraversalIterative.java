@@ -40,7 +40,7 @@ public class InOrderTraversalIterative {
 	public static void main(String[] args) {
 		BTNode<String> rt;
 		String[] dataArray = {"1","2","3","4",null,null,"5",null,null,"6",null,null,"7","8","9","10",null,null,"11",null,null,null,null};
-		rt = BTNode.buildBTWithPreOrder(dataArray, new AtomicInteger(0));
+		rt = BTNode.buildBTWithPreOrder(dataArray, new Counter(0));
 		BTDisplay.printTreeNode(rt);
 		inOrderTravesal(rt);
 	}

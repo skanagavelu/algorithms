@@ -13,7 +13,7 @@ public class LeafNodesCounter {
 
 		// Build Tree from dataArray using PreOrder
 		BTNode<Integer> root = BTNode.buildBTWithPreOrder(dataArray,
-				new AtomicInteger(0));
+				new Counter(0));
 		System.out.println("Tree built using PreOrder:");
 		BTDisplay.printTreeNode(root);
 		Counter numberOfLeafNodes = new Counter();
@@ -43,37 +43,8 @@ public class LeafNodesCounter {
 		getNumberOfLeafNodes(root.right, c);
 	}
 	
-	/**
-	 * This class is not thread safe. 
-	 * 
-	 */
-	public static class Counter {
-		public int count = 0;
-		
-		public Counter() {}
-		
-		public Counter(int count) {
-			this.count = count;
-		}
-		
-		public int incrementAndGet(){
-			return ++count;
-		}
-		
-		public int decrementAndGet(){
-			return ++count;
-		}
-		
-		public int get(){
-			return count;
-		}
-		
-		@Override
-		public String toString() {
-			return ""+count;
-		}
-	}
-	
+
+
 	
 	
 	
@@ -94,5 +65,6 @@ public class LeafNodesCounter {
 		
 		return count(root.left) + count(root.right);
 	}
+	
 
 }

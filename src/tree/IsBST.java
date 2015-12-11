@@ -26,7 +26,7 @@ public class IsBST<T extends Comparable<T>> {
 
 		// Build Tree from dataArray using PreOrder
 		BTNode<Integer> root = BTNode.buildBTWithPreOrder(dataArray,
-				new AtomicInteger(0));
+				new Counter(0));
 		System.out.println("Tree built using PreOrder:");
 		BTDisplay.printTreeNode(root);
 		System.out.println(isBST(root));
