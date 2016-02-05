@@ -17,20 +17,31 @@ public class InsertionSort {
 	
 	public static void sortIt(int[] integerArray) {
 		for(int i = 2; i < integerArray.length; ++i) {
-			for(int j = i - 1; (j >= 0 && integerArray[i] < integerArray[j]); --j,  --i) {
+			for(int j = i - 1; (j >= 0 && integerArray[j + 1] < integerArray[j]); --j) {
 				    //SWAP
-					int temp = integerArray[i];
-					integerArray[i] = integerArray[j];
+					int temp = integerArray[j + 1];
+					integerArray[j + 1] = integerArray[j];
 					integerArray[j] = temp;
 			}
 		}
 	}
 	
+	public static void sortItInReverse (int[] integerArray) {
+		for(int i = 2; i < integerArray.length; ++i) {
+			for(int j = i - 1; (j > 0 && integerArray[j-1] < integerArray[j]); --j) {
+				    //SWAP
+					int temp = integerArray[j-1];
+					integerArray[j-1] = integerArray[j];
+					integerArray[j] = temp;
+			}
+		}
+	}
 	
 	/**
 	 * Points to be noted
 	 * 
 	 * 1. I should starts from 2
+	 * 2. I should not be used at second loop since decrement is happening.
 	 * 2. Below logic 
 	 * 
 	 * 		for(int j = i - 1; j > 0; --j,  --i) {
