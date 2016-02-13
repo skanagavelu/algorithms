@@ -50,7 +50,7 @@ public class RotateBy90 {
 	
 	
 	/**
-	 * The second solution is simple and it will solve all type [RECTANGLE] or [SQUARE] of matrix.
+	 * The solution is simple and it will solve all type [RECTANGLE] or [SQUARE] of matrix.
 	 * @param matrix
 	 */
 	private static void printMatrixRotationBy90(int[][] matrix) {
