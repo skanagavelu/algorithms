@@ -51,9 +51,24 @@ public class QuickSort {
 		System.out.println(Arrays.toString(array6));
 		System.out.println("\n\n");
 		
+		//Handling array of size two
+		int[] array7 = {7, 4};
+		System.out.println(Arrays.toString(array7));
+		quickSort(array7, 0, array7.length -1);
+		System.out.println(Arrays.toString(array7));
+		System.out.println("\n\n");
+		
 	}
 
 	private static void quickSort(int[] array, int p, int r) {
+		//Handling array of size two
+		if( p == r-1) {
+			if (array[p] > array[r]) {
+				swap(array, p, r);
+			}
+			return;
+		}
+		
 		if(p < r) {
 			int q = partition(array, p, r);	
 //			System.out.println(Arrays.toString(array));
@@ -66,7 +81,24 @@ public class QuickSort {
 
 	private static int partition(int[] array, int p, int r) {
 		int pivot = array[r];
-		for (int i = p, j = r - 1; i < j;) {
+		for (int i = p, j = r - 1; i < j ;) {
+			//Sorting the last three number
+			if(i == (j-1)) {
+				//Sorting the three number
+				if (array[i] > array[j]) { 
+					swap(array, i, j);
+				}
+				
+				if (array[j] > array[r]) {
+					swap(array, j, r);
+					r = j; //PIVOT position changed
+				}
+				if (array[i] > array[j]) {
+					swap(array, i, j);
+					r = i; //PIVOT position changed
+				}
+				break;
+			}
 			if(array[i] < pivot) {
 				i++;
 			} else {
@@ -74,28 +106,6 @@ public class QuickSort {
 				array[j] = array[i];
 				array[i] = temp;
 				j--;
-			}
-			if(i == j) {
-				int a = i;
-				int b = i + 1;
-				int c = r;
-				if( b == r) {
-					a -= 1;
-					b -= 1;
-				}
-				//Sorting the three number
-				if (array[a] > array[b]) { 
-					swap(array, a, b);
-				}
-				
-				if (array[b] > array[c]) {
-					swap(array, b, c);
-					r = b; //PIVOT position changed
-				}
-				if (array[a] > array[b]) {
-					swap(array, a, b);
-					r = a; //PIVOT position changed
-				}
 			}
 		}
 		return r;
