@@ -9,7 +9,11 @@ public class DutchNationalFlagProblem {
 			System.out.println(i);
 		}
 	}
-
+        /**
+         * Start three pointer i(start; points till all left side zeros), 
+         *                     j(start; probagates till k crosses) and 
+         *                     k(end; points till all right side ones).
+         * /
 	private static void solveIt(int[] a) {
 		for (int i = 0, j = 0, k = a.length - 1; j < k;) {
 			switch (a[j]) {
