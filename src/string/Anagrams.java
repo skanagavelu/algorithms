@@ -1,3 +1,4 @@
+package string;
 public class Anagrams {
 	public static void main(String[] args) {
 		int k = 4;
