@@ -87,7 +87,8 @@ public class MergeSort {
 		if(p < r) {
 			mergeSort(array, p, mid);
 			mergeSort(array, mid+1, r);
-			merge(array, p, mid, r);
+//			merge(array, p, mid, r);
+			inPlaceMerge(array, p, mid, r);
 		}
 	}
 
@@ -120,5 +121,56 @@ public class MergeSort {
 		while(i < left.length){
 			array[p++] = left[i++];
 		}
+	}
+	
+	
+	private static void inPlaceMerge(int[] array, int p, int mid, int r) {
+		int secondArrayStart = mid+1;
+		int prevPlaced = mid+1;
+		int q = mid+1;
+		while(p < mid+1 && q <= r){
+			boolean swapped = false;
+			if(array[p] > array[q]) {
+				swap(array, p, q);
+				swapped = true;
+			}	
+			if(q != secondArrayStart && array[p] > array[secondArrayStart]) {
+				swap(array, p, secondArrayStart);
+				swapped = true;
+			}
+			//Check swapped value is in right place of second sorted array
+			if(swapped && secondArrayStart+1 <= r && array[secondArrayStart+1] < array[secondArrayStart]) {
+				prevPlaced = placeInOrder(array, secondArrayStart, prevPlaced);
+			}
+			p++;
+			if(q < r) {     //q+1 <= r) {
+				q++;
+			}
+		}
+	}
+	
+	private static int placeInOrder(int[] array, int secondArrayStart, int prevPlaced) {
+		int i = secondArrayStart;
+		for(; i < array.length; i++) {
+			//Simply swap till the prevPlaced position
+			if(secondArrayStart < prevPlaced) {
+				swap(array, secondArrayStart, secondArrayStart+1);
+				secondArrayStart++;
+				continue;
+			}
+			if(array[i] < array[secondArrayStart]) {
+				swap(array, i, secondArrayStart);
+				secondArrayStart++;
+			} else if(i != secondArrayStart && array[i] > array[secondArrayStart]){
+				break;
+			}
+		}
+		return secondArrayStart;
+	}
+
+	private static void swap(int[] array, int m, int n){
+		int temp = array[m];
+		array[m] = array[n];
+		array[n] = temp;
 	}
 }
