@@ -77,6 +77,7 @@ public class BTNode<T extends Comparable<T>> {
 	
 	//Since binary tree is unbalanced and not sorted, we have to lookup on all the nodes.
 	//The search is worst case is n here.
+	//This is how you can skip the recursion; when you found it. 
 	public static <T extends Comparable<T>>  BTNode<T> findBTNodeForData(BTNode<T> root, T data){
         if(root == null || root.data.equals(data)) {
         	return root;

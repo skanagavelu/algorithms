@@ -18,7 +18,7 @@ public class Counter {
 	}
 	
 	public int decrementAndGet(){
-		return ++count;
+		return --count;
 	}
 	
 	public int get(){

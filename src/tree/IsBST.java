@@ -45,7 +45,7 @@ public class IsBST<T extends Comparable<T>> {
 		if(root == null) {
 			return true;
 		}
-		if((root.left != null && root.left.data.compareTo(root.data) > 0 ) || (root.left != null && root.right.data.compareTo(root.data) < 0)) {
+		if((root.left != null && root.left.data.compareTo(root.data) > 0 ) || (root.right != null && root.right.data.compareTo(root.data) < 0)) {
 			return false;
 		}
 		
