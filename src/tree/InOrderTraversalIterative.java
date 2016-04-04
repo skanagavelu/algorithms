@@ -1,7 +1,5 @@
 package tree;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 /**
  * This code will ensure holding of chain(links) of nodes from the root to till the level of the tree.
  * The number of extra nodes in the memory (other than tree) is height of the tree.
