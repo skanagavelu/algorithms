@@ -3,7 +3,7 @@ package dynamicProgramming;
 import java.util.Arrays;
 
 /**
- * Longest Palindromic Subsequence by Tushar Roy on Youtube
+ * Longest Palindrome Subsequence by Tushar Roy on Youtube
  * 
  * @author ksugumar
  *
