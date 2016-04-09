@@ -5,7 +5,7 @@ package misc;
  * http://www.geeksforgeeks.org/amazon-interview-experience-set-249-telephonic-
  * interview/ I/p: I work at xyz O/p: xyz at work I
  * 
- * @author I311774
+ * @author ksugumar
  *
  */
 public class DisplayTheWordsInReverseOrder {
