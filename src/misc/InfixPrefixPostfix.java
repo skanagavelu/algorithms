@@ -23,8 +23,8 @@ public class InfixPrefixPostfix {
 		 *   2 3 + 
 		 *   <Operand> <Operand> <OPERATOR> 
 		 *   
-		 *   Prefix expression (Polish)
-		 *   ----------------------------------
+		 *   Prefix expression (Polish) Should come from (Right to Left) while evaluating
+		 *   -----------------------------
 		 *   + 2 3 
 		 *   <OPERATOR> <Operand> <Operand>  
 		 *   
