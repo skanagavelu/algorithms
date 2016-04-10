@@ -39,9 +39,9 @@ public class LongestCommonSubsequence {
 		for(int i = 1; i < matrix.length; i++) {
 			for(int j = 1; j < matrix[0].length; j++ ) {
 				if(inputArray1[i-1] == inputArray2[j-1]) { //This is important, since i, j starts with one.
-					matrix[i][j] = matrix[i-1][j-1] + 1;
+					matrix[i][j] = matrix[i-1][j-1] + 1;  //Diagonal value (the best common sequence before) + 1 (for current equal value)
 				} else {
-					matrix[i][j] = Math.max(matrix[i-1][j], matrix[i][j-1]);
+					matrix[i][j] = Math.max(matrix[i-1][j], matrix[i][j-1]); //TOP OR LEFT
 				}
 			}
 		}
@@ -54,16 +54,17 @@ public class LongestCommonSubsequence {
 		int i = matrix.length - 1;    //MINUS ONE is important,when using this value in matrix. 
 		int j = matrix[0].length - 1;
 		while(i !=0 && j !=0) {
-			if(matrix[i-1][j] == matrix[i][j]){
+			if(matrix[i-1][j] == matrix[i][j]) { //TOP propagation
 				i = i-1;
-			} else if (matrix[i][j-1] == matrix[i][j]){
+			} else if (matrix[i][j-1] == matrix[i][j]) { //Left propagation
 				j = j-1;
-			} else { //Diagonal movement prints the common char 
+			} else { //Diagonal movement prints the common/equal char 
 				i = i-1;
 				j = j-1;
 //				System.out.println("Found: i="+i+"  j="+j);
 //				System.out.println(matrix[i][j]);
 				System.out.println(inputArray1[i]);
+//				System.out.println(inputArray2[j]);
 			}
 //			System.out.println("     : i="+i+"  j="+j);
 		}

@@ -5,6 +5,8 @@ import java.util.Arrays;
 /**
  * Longest Palindrome Subsequence by Tushar Roy on Youtube
  * 
+ * INPUT is single row but computation need 2D array.
+ * 
  * @author ksugumar
  *
  */
@@ -26,7 +28,7 @@ public class LongestPalindromicSubsequence {
 			int start = 0;
 			int end = start + subStringLength;
 			while((start + subStringLength) < input.length()) {
-				if(inputArray[start] != inputArray[end]) { //matrix[start][start] != matrix[end][end] IMPORTANT comparision should be done on input
+				if(inputArray[start] != inputArray[end]) { //matrix[start][start] != matrix[end][end] IMPORTANT comparison should be done on input
 					matrix[start][end] = Math.max(matrix[start][end-1], matrix[start+1][end]); //Should be very careful that what index we are comparing.
 				} else {
 					matrix[start][end] = 2 +   Math.max(matrix[start][end-1], matrix[start+1][end]);

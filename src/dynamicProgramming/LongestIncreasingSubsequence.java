@@ -9,6 +9,9 @@ import java.util.Arrays;
  * 
  * Tushar Roy gave one more solution using o(nlogn) but not captured here
  * 
+ *   3  4  -1  0  6  2  3
+ *   1  2   1  2  3  3  4
+ *   
  * @author ksugumar
  *
  */
@@ -21,7 +24,7 @@ public class LongestIncreasingSubsequence {
 
 	private static int findLongestIncreasingSubsequence(int[] input) {
 		int[] counter = new int[input.length];
-		Arrays.fill(counter, 1);
+		Arrays.fill(counter, 1); //Important to note
 		for(int i = 1; i < input.length; i++) {
 			for(int j = 0; j < i; j++ ) {
 				if(input[j] < input[i]) {

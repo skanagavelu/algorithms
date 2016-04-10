@@ -36,7 +36,7 @@ public class LongestCommonSubstring {
 		System.out.println(max);
 		
 		
-		//print the sequence
+		//print the sequence; Diagonal traversal till zero
 		while(matrix[maxIthIndex][maxJthIndex] != 0) {
 			System.out.println(str1[maxIthIndex-1]);
 //			System.out.println(str2[maxJthIndex-1]); Anyone will work fine.
