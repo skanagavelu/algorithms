@@ -24,16 +24,21 @@ public class BTTopBottomRightLeftView {
 		System.out.println("Tree built using PreOrder:");
 		BTDisplay.printTreeNode(root);
 		
+		//TOP View
 		Map<Integer, BTNode<Integer>> map = new TreeMap<Integer, BTNode<Integer>>();
 		int horizontalDistance = 0;
-		buildBttomViewOfBT(root, horizontalDistance, map);
-		System.out.println(map);
-		map = new TreeMap<Integer, BTNode<Integer>>();
 		buildTopViewOfBT(root, horizontalDistance, map);
 		System.out.println(map);
 		
+		//Bottom view
+		map = new TreeMap<Integer, BTNode<Integer>>();
+		buildBttomViewOfBT(root, horizontalDistance, map);
+		System.out.println(map);
+		
+		//Left View
 		buildLeftViewOfBT(root, 0, new Counter(1));
 		
+		//RightView
 		buildRightViewOfBT(root, 0, new Counter(1));
 	}
 
@@ -65,7 +70,7 @@ public class BTTopBottomRightLeftView {
 		if(root == null) {
 			return;
 		}
-        if( (currentlevel + 1) == nextLevelToPrint.get()) { //This is more important.
+        if( (currentlevel + 1) == nextLevelToPrint.get()) { //This is more important. Don't use <, use ==
         	nextLevelToPrint.incrementAndGet();
         	System.out.println(root);
         }
