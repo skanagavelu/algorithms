@@ -44,26 +44,27 @@ public class InOrderTraversalIterative {
 	}
 	
 	public static void inOrderTravesal(BTNode<String> root) {
-		ParentChain node = new ParentChain(root);
-		node.Parent = new ParentChain(null);;
+		ParentChain rootChain = new ParentChain(root);
+		rootChain.Parent = new ParentChain(null);
 		
 		while (root != null) {
 			
-			if(node.leftVisited && node.rightVisited) {
-				ParentChain parentNode = node.Parent;
-				node.Parent = null; //Avoid the leak
-				node = parentNode;
-				root = node.root;
+			//Going back to parent
+			if(rootChain.leftVisited && rootChain.rightVisited) {
+				ParentChain parentChain = rootChain.Parent;
+				rootChain.Parent = null; //Avoid the leak / Return to pool.
+				rootChain = parentChain;
+				root = rootChain.root;
 				continue;
 			}
 			
 			//Traverse Left
-			if(!node.leftVisited) {
-				node.leftVisited = true;
+			if(!rootChain.leftVisited) {
+				rootChain.leftVisited = true;
 				if (root.left != null) {
 					ParentChain local = new ParentChain(root.left); //It is better to use pool to reuse the instances.
-					local.Parent = node;
-					node = local;
+					local.Parent = rootChain;
+					rootChain = local;
 					root = root.left;
 					continue;
 				}
@@ -72,12 +73,103 @@ public class InOrderTraversalIterative {
 			System.out.println(root.data); //Visit the node.
 			
 			//Traverse RIGHT
-			if(!node.rightVisited) {
-				node.rightVisited = true;
+			if(!rootChain.rightVisited) {
+				rootChain.rightVisited = true;
 				if (root.right != null) {
 					ParentChain local = new ParentChain(root.right); //It is better to use pool to reuse the instances.
-					local.Parent = node;
-					node = local;
+					local.Parent = rootChain;
+					rootChain = local;
+					root = root.right;
+					continue;
+				}
+			}
+		}
+	}
+	
+	
+	public static void postOrderTravesal(BTNode<String> root) {
+		ParentChain rootChain = new ParentChain(root);
+		rootChain.Parent = new ParentChain(null);
+		
+		while (root != null) {
+			
+			//Going back to parent
+			if(rootChain.leftVisited && rootChain.rightVisited) {
+				System.out.println(root.data); //Visit the node.
+				ParentChain parentChain = rootChain.Parent;
+				rootChain.Parent = null; //Avoid the leak
+				rootChain = parentChain;
+				root = rootChain.root;
+				continue;
+			}
+			
+			//Traverse Left
+			if(!rootChain.leftVisited) {
+				rootChain.leftVisited = true;
+				if (root.left != null) {
+					ParentChain local = new ParentChain(root.left); //It is better to use pool to reuse the instances.
+					local.Parent = rootChain;
+					rootChain = local;
+					root = root.left;
+					continue;
+				}
+			} 
+			
+			//Traverse RIGHT
+			if(!rootChain.rightVisited) {
+				rootChain.rightVisited = true;
+				if (root.right != null) {
+					ParentChain local = new ParentChain(root.right); //It is better to use pool to reuse the instances.
+					local.Parent = rootChain;
+					rootChain = local;
+					root = root.right;
+					continue;
+				}
+			}
+		}
+	}
+	
+	
+	
+	public static void preOrderTravesal(BTNode<String> root) {
+		ParentChain rootChain = new ParentChain(root);
+		rootChain.Parent = new ParentChain(null);
+		
+		while (root != null) {
+			
+			//Visit the node when nothing is visited.
+			if(!rootChain.leftVisited && !rootChain.rightVisited) {
+				System.out.println(root.data); //Visit the node.
+			}
+			
+			//Going back to parent
+			if(rootChain.leftVisited && rootChain.rightVisited) {
+				ParentChain parentChain = rootChain.Parent;
+				rootChain.Parent = null; //Avoid the leak
+				rootChain = parentChain;
+				root = rootChain.root;
+				continue;
+			}
+			
+			//Traverse Left
+			if(!rootChain.leftVisited) {
+				rootChain.leftVisited = true;
+				if (root.left != null) {
+					ParentChain local = new ParentChain(root.left); //It is better to use pool to reuse the instances.
+					local.Parent = rootChain;
+					rootChain = local;
+					root = root.left;
+					continue;
+				}
+			} 
+			
+			//Traverse RIGHT
+			if(!rootChain.rightVisited) {
+				rootChain.rightVisited = true;
+				if (root.right != null) {
+					ParentChain local = new ParentChain(root.right); //It is better to use pool to reuse the instances.
+					local.Parent = rootChain;
+					rootChain = local;
 					root = root.right;
 					continue;
 				}
