@@ -12,7 +12,7 @@ import java.lang.reflect.Array;
  *    front get moved right to point to the next available element. 
  * 3) Q Size (N - front + rear) % N :where N is total array size allocated
  * 4) Resize the array as part of adding new element and founding front and rear are equal 
- *    OR size is reached the MAX value.
+ *    OR size is reached the MAX value. 
  * 5) While resizing add the element from front to rear to the new array.
  *  
  * @author ksugumar
