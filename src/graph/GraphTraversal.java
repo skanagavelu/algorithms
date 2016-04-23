@@ -98,6 +98,11 @@ public class GraphTraversal {
 		}
 		System.out.println("Node Visisted: "+ vertex);
 		List<T> children = graph.getAdjacencyNodes(vertex);
+		if(children == null) { 
+			//There is a possibility of node with no adjacent nodes in directed graph.
+			// A --> B here B has no adjacent nodes.
+			return;
+		}
 		for(T child : children) {
 			doDFSTraversalUtil(graph, child, visited);
 		}
