@@ -18,7 +18,7 @@ import java.lang.reflect.Array;
  * @author ksugumar
  *
  */
-public class QueueUsingCircularArray<T> {
+public class QueueUsingCircularArray <T> {
 	T[] array;
 	int front = 0;
 	int rear = 0;
