@@ -32,12 +32,12 @@ public class QueueUsingCircularArray <T> {
 	}
 
 	public int size() {
-		return (N - front + rear) % N;
+		return (N - front + rear) % N; //Important %
 	}
 
 	public void add(T data) {
 		int size = size();
-		if (size() == N - 1) {
+		if (size() == N - 1) { //Full Size achieved
 			resize();
 		}
 		array[rear++] = data;
