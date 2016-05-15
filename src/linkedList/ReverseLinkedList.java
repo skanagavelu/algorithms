@@ -17,7 +17,7 @@ public class ReverseLinkedList {
 			node = node.next;
 		}
 		
-		LinkedNode<Integer> updated = recursiveReverseLL(head, null);
+		LinkedNode<Integer> updated = recursiveReverseLL(head, null); //Passing null is important here, to set 1's next to NULL.
 
 		while (updated != null) {
 			System.out.println(updated);
