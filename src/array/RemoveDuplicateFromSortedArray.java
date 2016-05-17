@@ -1,5 +1,10 @@
 package array;
 
+/**
+ * 
+ * @author ksugumar
+ *
+ */
 public class RemoveDuplicateFromSortedArray {
 	static int[] arr = {1,1,2,3,3,4,5,5,6,6,6,6,8,9,9};
 	public static void main(String[] args) {
