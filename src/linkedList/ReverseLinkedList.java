@@ -17,8 +17,10 @@ public class ReverseLinkedList {
 			node = node.next;
 		}
 		
-//		LinkedNode<Integer> updated = recursiveReverseLL(head, null); //Passing null is important here, to set 1's next to NULL.
-		LinkedNode<Integer> updated = reverseLL(head);
+		LinkedNode<Integer> updated = recursiveReverseLL(head, null); //Passing null is important here, to set 1's next to NULL.
+//		head.next = null;  This is needed when calling  recursiveReverseLL1
+		
+//		LinkedNode<Integer> updated = reverseLL(head);
 		while (updated != null) {
 			System.out.println(updated);
 			updated = updated.next;
@@ -51,6 +53,18 @@ public class ReverseLinkedList {
 //	}
 	
 	
+	/**
+	 * recursiveReverseLL1 will return the first node passed which is "1" though list is reversed.
+	 * But we want "10" should be returned since this is the first node after reverse.
+	 * Hence this method lastReturn is always pointing to "10"
+	 * 
+	 * Also recursiveReverseLL1 will not set the first node to null. But this
+	 * method take care of it, as prev is NULL when we calling this API.
+	 * 
+	 * @param head
+	 * @param prev
+	 * @return
+	 */
 	private static <T> LinkedNode<T> recursiveReverseLL(LinkedNode<T> head, LinkedNode<T> prev) {
 		if(head == null) {
 			return  prev;
@@ -58,6 +72,16 @@ public class ReverseLinkedList {
 		LinkedNode<T> lastReturn = recursiveReverseLL(head.next, head);
 		head.next = prev;
 		return lastReturn;
+	}
+	
+	
+	private static <T> LinkedNode<T> recursiveReverseLL1(LinkedNode<T> head) {
+		if(head.next == null) { //Last node found
+			return  head;
+		}
+		LinkedNode<T> lastReturn = recursiveReverseLL1(head.next);
+		lastReturn.next = head;
+		return head;
 	}
 }
 
