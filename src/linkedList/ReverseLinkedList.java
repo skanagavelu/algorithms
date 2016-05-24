@@ -17,15 +17,15 @@ public class ReverseLinkedList {
 			node = node.next;
 		}
 		
-		LinkedNode<Integer> updated = recursiveReverseLL(head, null); //Passing null is important here, to set 1's next to NULL.
-
+//		LinkedNode<Integer> updated = recursiveReverseLL(head, null); //Passing null is important here, to set 1's next to NULL.
+		LinkedNode<Integer> updated = reverseLL(head);
 		while (updated != null) {
 			System.out.println(updated);
 			updated = updated.next;
 		}
 
 	}
-
+	
 	private static <T> LinkedNode<T> reverseLL(LinkedNode<T> head) {
 		LinkedNode<T> prev = head;
 		LinkedNode<T> current = head.next;    //Note previous and current is enough, not next is needed.
