@@ -6,6 +6,12 @@ import java.util.EmptyStackException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Source Oracle JDK: java.util.stack
+ * @author ksugumar
+ *
+ * @param <E>
+ */
 public class CustomStack<E> {
 
     protected Object[] elementData;
@@ -36,12 +42,8 @@ public class CustomStack<E> {
     }
 
     public E pop() {
-        E       obj;
-        int     len = size();
-
-        obj = peek();
-        removeElementAt(len - 1);
-
+        E obj = peek();
+        removeElementAt(size() - 1);
         return obj;
     }
     
@@ -59,7 +61,7 @@ public class CustomStack<E> {
             System.arraycopy(elementData, index + 1, elementData, index, j);
         }
         elementCount--;
-        elementData[elementCount] = null; /* to let gc do its work */
+        elementData[elementCount] = null; /* avoid leak */
     }
 
 
