@@ -19,6 +19,9 @@ public class BTNodesCounter {
 
 
 		System.out.println(count(root));
+		
+		System.out.println(findMax(root));
+
 	}
 	
 	private static <T extends Comparable<T>> int count(BTNode<T> root) {
@@ -27,5 +30,18 @@ public class BTNodesCounter {
 		}
 
 		return  1 + count(root.left) + count(root.right);
+	}
+	
+	
+	private static <T extends Comparable<T>> BTNode<T>  findMax(BTNode<T> root) {
+         
+		BTNode<T> max = root;
+		if(root.left != null)
+		max = root.data.compareTo(findMax(root.left).data) > 0 ? root : findMax(root.left);
+		
+		if(root.right != null)
+		max = max.data.compareTo(findMax(root.right).data) > 0 ?  max : findMax(root.right);
+
+		return  max;
 	}
 }

@@ -13,7 +13,7 @@ public class InfixPrefixPostfix {
 		 *   <Operand> <OPERATOR> <Operand>
 		 *   Operand = Object or value on which operation is performed.
 		 *           = Operand can be variable or constants
-		 *           = Operand can also be again an expression which can be further divided into <Operand> <Operator> <Operand>
+		 *           = Operand can also be again an expression which can be further divided into <Operand> <OPERATOR> <Operand>
 		 *           
 		 *   Binary Operator = which requires exactly two operands to perform operation.
 		 *   

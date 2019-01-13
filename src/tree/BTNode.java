@@ -32,18 +32,21 @@ public class BTNode<T extends Comparable<T>> {
 	}
 	
 	public static void main(String[] args) {
-		BTNode<String> rt;
+		BTNode<String> root;
 //		rt.data = "5";
 //		rt.left = new BTNode<String>();
 //		rt.left.data = "10";
 //		rt.right = new BTNode<String>();
 //		rt.right.data = "20";
+		
+		
 		String[] dataArray = {"1","2","3","4",null,null,"5",null,null,"6",null,null,"7","8","9","10",null,null,"11",null,null,null,null};
 //		String[] dataArray = {"1","2","3","4"};
-		rt = buildBTWithPreOrder(dataArray, new Counter(0));
-		BTDisplay.printTreeNode(rt);
+		root = buildBTWithPreOrder(dataArray, new Counter(0));
+		BTDisplay.printTreeNode(root);
+		
 		List a = new ArrayList();
-		buildDataArryaWithPreOrder(rt, a, new Counter(0));
+		buildDataArryaWithPreOrder(root, a, new Counter(0));
 		System.out.println(a);
 	}
 	

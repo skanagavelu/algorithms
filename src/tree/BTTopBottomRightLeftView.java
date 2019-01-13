@@ -27,18 +27,26 @@ public class BTTopBottomRightLeftView {
 		//TOP View
 		Map<Integer, BTNode<Integer>> map = new TreeMap<Integer, BTNode<Integer>>();
 		int horizontalDistance = 0;
+		System.out.println("buildTopViewOfBT");
 		buildTopViewOfBT(root, horizontalDistance, map);
 		System.out.println(map);
 		
 		//Bottom view
+		System.out.println("buildBttomViewOfBT");
 		map = new TreeMap<Integer, BTNode<Integer>>();
 		buildBttomViewOfBT(root, horizontalDistance, map);
 		System.out.println(map);
 		
 		//Left View
+		System.out.println("buildLeftViewOfBT");
 		buildLeftViewOfBT(root, 0, new Counter(1));
 		
+		//Left View
+		System.out.println("buildLeftViewOfBT1");
+		buildLeftViewOfBT1(root, 0, new Counter(0));
+		
 		//RightView
+		System.out.println("buildRightViewOfBT");
 		buildRightViewOfBT(root, 0, new Counter(1));
 	}
 
@@ -77,6 +85,22 @@ public class BTTopBottomRightLeftView {
         buildLeftViewOfBT(root.left, currentlevel + 1, nextLevelToPrint);
         buildLeftViewOfBT(root.right, currentlevel + 1, nextLevelToPrint);
 	}
+	
+	
+	//Pre Order and left traversal first
+	private static void buildLeftViewOfBT1(BTNode<Integer> root, int currentlevel, Counter nextLevelToPrint) {
+		if(root == null) {
+			return;
+		}
+        if( currentlevel == nextLevelToPrint.get()) { //This is more important. Don't use <, use ==
+        	nextLevelToPrint.incrementAndGet();
+        	System.out.println(root);
+        }
+        buildLeftViewOfBT1(root.left, currentlevel + 1, nextLevelToPrint);
+        buildLeftViewOfBT1(root.right, currentlevel + 1, nextLevelToPrint);
+	}
+	
+	
 	
 	//Pre Order and right traversal first
 	private static void buildRightViewOfBT(BTNode<Integer> root, int currentlevel, Counter nextLevelToPrint) {
