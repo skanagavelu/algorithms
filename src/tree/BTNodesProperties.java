@@ -3,7 +3,7 @@ package tree;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-public class BTNodesCounter {
+public class BTNodesProperties {
 
 	public static void main(String[] args) {
 
@@ -18,8 +18,13 @@ public class BTNodesCounter {
 		BTDisplay.printTreeNode(root);
 
 
+		System.out.println("Height or Depth of the tree:");
+		System.out.println(findHeightOrDepth(root));
+		
+		System.out.println("Total number of nodes:");
 		System.out.println(count(root));
 		
+		System.out.println("Max value Node:");
 		System.out.println(findMax(root));
 
 	}
@@ -28,7 +33,6 @@ public class BTNodesCounter {
 		if (root == null) {
 			return 0;
 		}
-
 		return  1 + count(root.left) + count(root.right);
 	}
 	
@@ -43,5 +47,17 @@ public class BTNodesCounter {
 		max = max.data.compareTo(findMax(root.right).data) > 0 ?  max : findMax(root.right);
 
 		return  max;
+	}
+	
+	/*
+	 * https://www.geeksforgeeks.org/write-a-c-program-to-find-the-maximum-depth-or-height-of-a-tree/
+	 * @param root
+	 * @return
+	 */
+	private static <T extends Comparable<T>> int  findHeightOrDepth(BTNode<T> root) {
+		if(root == null ) {
+			return 0;
+		}
+		return  1 + Math.max(findHeightOrDepth(root.left), findHeightOrDepth(root.right));
 	}
 }

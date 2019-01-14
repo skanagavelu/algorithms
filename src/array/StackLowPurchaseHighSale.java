@@ -1,7 +1,7 @@
 package array;
 
 
-public class MaximumSubArray {
+public class StackLowPurchaseHighSale {
 	public static void main(String[] args) {
 //      int[] array = {1,-2,-5,55,56,-11,58,-13};
 //      int[] array = {1,-2,-5,55};
@@ -11,23 +11,24 @@ public class MaximumSubArray {
 //		int[] array = {52,55,1,5,0};
 //      int[] array = {100,52,1,55,1,4};
 //      int[] array = {100,52,40,55,1,30,52};
-		int[] array = {100,52,40,55,30,52};
+//		int[] array = {100,52,40,55,30,52};
+		int[] array = {-2,-3,4,-1,-2,1,5,-3};
+
       
       int min = array[0];
       int max = 0;
-      int tmp = array[0];
+      int minTmp = array[0];
       
       for(int i = 1; i < array.length; i++) {
-    	  int val = array[i];
-    	  if(val < min && val < tmp) {
-    		  tmp = val;
+    	  int currentIndxVal = array[i];
+    	  if(currentIndxVal < min && currentIndxVal < minTmp) {
+    		  minTmp = currentIndxVal;
     	  }
-    	  else if ( (val - tmp ) >  (max - min)) {
-    		  min = tmp;
-    		  max = val;
+    	  else if ( (currentIndxVal - minTmp ) >  (max - min)) {
+    		  min = minTmp;
+    		  max = currentIndxVal;
     	  }
       }
-      
       System.out.println("Min/Max : " + min + "/" + max);
 	}
 }

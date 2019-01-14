@@ -1,7 +1,10 @@
 package misc;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.Stack;
 
 public class InfixPrefixPostfix {
@@ -52,6 +55,7 @@ public class InfixPrefixPostfix {
 //		String expression = "A+B*C";
 //		String expression = "((A+B)*C-D)*E";
 		String expression = "((2+3)*6-10)*2";
+		expression = expression.replaceAll(" ", "");
 		expression = expression.replaceAll("\\+", "~+~");
 		expression = expression.replaceAll("\\*", "~*~");
 		expression = expression.replaceAll("-", "~-~");
@@ -239,7 +243,7 @@ public class InfixPrefixPostfix {
 	}
 	
 	
-	private static String[] arrayConversionOfExpression(String expression){
+	private static String[] arrayConversionOfExpression(String expression) {
 		expression = expression.replaceAll("\\,", "~");
 		expression = expression.replaceAll("\\+", "~+~");
 		expression = expression.replaceAll("\\*", "~*~");
@@ -248,9 +252,71 @@ public class InfixPrefixPostfix {
 		expression = expression.replaceAll("\\(", "~(~"); //also you can use [(] instead of \\(
 		expression = expression.replaceAll("\\)", "~)~"); //also you can use [)] instead of \\)
 		expression = expression.replaceAll("~~", "~");
-		if(expression.startsWith("~")) {
+		if (expression.startsWith("~")) {
 			expression = expression.substring(1);
 		}
 		return expression.split("~");
 	}
+	
+    
+	
+/*	 private char clostingParanthesis = ')';
+	 private char openingParanthesis = '(';
+	 private Set operators = new HashSet<>(Arrays.asList(new char [] {'*', '+', '-', '/'}));
+
+	 
+	 public int evaluate (String expression) {
+		 char[] charArray = expression.toCharArray();
+		 Stack<Character> charStack = new Stack<>();
+		 for(int i = 0; i < charArray.length; i++ ) {
+			 if(charArray[i] != clostingParanthesis) {
+				 charStack.push(charArray[i]);
+			 } else {
+				 StringBuilder firstOperand = new StringBuilder();
+				 StringBuilder secondOperand = new StringBuilder();
+                 char operator = '\u0000';
+				 
+				 for(int j = 0; j < charStack.size(); j++ ) {
+					 char popedChar = charStack.pop();
+					 
+					 if(operators.contains(popedChar)) {
+						 operator = popedChar;
+					 }
+					 else if(popedChar != openingParanthesis) {
+						 String value = evaluateTwoOperands(popedChar,firstOperand.toString(), secondOperand.toString());
+
+					 }
+					 else {
+						 if(operator == '\u0000') {
+							 firstOperand.append(popedChar);
+						 } else {
+							 secondOperand.append(popedChar);
+						 }
+					 }
+				 }
+			 }
+		 }
+		 
+		 return 0;
+	 }
+	 
+	 private String evaluateTwoOperands (char operator, String firstOperandString, String secondOperandString) {
+		 int firstOperand = Integer.parseInt(firstOperandString);
+		 int secondOperand = Integer.parseInt(secondOperandString);
+
+		 switch (operator) {
+		 case '*':
+			 return String.valueOf(firstOperand * secondOperand);		 
+		 case '/':
+			 return String.valueOf(firstOperand / secondOperand);
+		 case '+':
+			 return String.valueOf(firstOperand + secondOperand);
+		 case '-':
+			 return String.valueOf(firstOperand - secondOperand);
+		 default:
+			 return "";
+		 }
+			 
+	 } */
+	 
 }
