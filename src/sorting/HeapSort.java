@@ -2,51 +2,87 @@ package sorting;
 
 import java.util.Arrays;
 
+/**
+ * Heap Sort
+ * Given an array sort it using heap sort
+ * 
+ * Solution:
+ * 1. buildHeap (max/min) ?
+ * 2. delete each root, and add it to size-1 th element.
+ * 
+ * Time complexity
+ * O(nlogn)
+ * 
+ * Test cases
+ */
 public class HeapSort {
-	public static void main(String[] args) {
-		int[] array = { 5, 6, 10, 3, 9, 2, 12, 1, 8, 7 };
-		maxHeapSort(array, array.length);
-		System.out.println(Arrays.toString(array));
-		System.out.println("\n\n");
-	}
 
-	private static void maxHeapSort(int[] array, int length) {
-		for(int i = 1; i < length; i++ ) {
-			maxHeapify(array, 1, length-i);
-			swap(array, 0, length-i);
-		}
-		//Working on last three indexes [which is 0,1,2]
-		correctNode(array, 1, 3);
-		swap(array, 0, 2);
-		correctNode(array, 1, 2);
-		swap(array, 0, 1);
-	}
+    public void sort(int arr[]){
 
-	private static void maxHeapify(int[] array, int nodeIndex, int length) {
-		if(nodeIndex < length) {
-			correctNode(array, nodeIndex, length);
-			maxHeapify(array, 2 * nodeIndex, length);
-			maxHeapify(array, (2 * nodeIndex)+1, length);
-			correctNode(array, nodeIndex, length);
-		}
-	}
+        buildHeap(arr);
 
-	private static void correctNode(int[] array, int index, int length) {
-		int rootIndex = index - 1;
-		int leftIndex = (2 * index) - 1;
-		int rightIndex = ((2 * index) + 1) - 1;
-		if(leftIndex < length && array[rootIndex] < array[leftIndex]) {
-			swap(array, rootIndex, leftIndex);
-		}
-		
-		if(rightIndex < length && array[rootIndex] < array[rightIndex]) {
-			swap(array, rootIndex, rightIndex);
-		}
-	}
-	
-	private static void swap(int[] array, int m, int n){
-		int temp = array[m];
-		array[m] = array[n];
-		array[n] = temp;
-	}
+        //Delete 0th index and add it to last
+        for(int i = arr.length - 1; i >= 0; i--){
+            swap(arr, 0, i);
+
+            //heapify only non deleted nodes.
+            heapify(arr, 0, i);
+        }
+    }
+
+    private void swap(int arr[], int x, int y){
+        int temp = arr[x];
+        arr[x] = arr[y];
+        arr[y] = temp;
+    }
+
+
+    private void buildHeap(int arr[]) {
+
+        for (int i = arr.length - 1; i > -1; i--) {
+            heapify(arr, i, arr.length - 1);
+        }
+    }
+
+    /*
+     * heapify on the element, if changed then heapify on its new child position.
+     */
+    private void heapify(int arr[], int element, int size) {
+
+        int leftChildIdx = 2 * element + 1;
+        int rightChildIdx = 2 * element + 2;
+
+        if (leftChildIdx < size) {
+            if (rightChildIdx < size) {
+                if(arr[element] >= Math.max(arr[leftChildIdx], arr[rightChildIdx])) {
+                    //do nothing
+                    return;
+                }
+                if (arr[leftChildIdx] < arr[rightChildIdx]) {
+
+                    swap(arr, element, rightChildIdx);
+                    heapify(arr, rightChildIdx, size);
+                } else  {
+
+                    swap(arr, element, leftChildIdx);
+                    heapify(arr, leftChildIdx, size);
+                }
+            } else {
+
+                if (arr[element] < arr[leftChildIdx]) {
+
+                    swap(arr, element, leftChildIdx);
+                    heapify(arr, leftChildIdx, size);
+                }
+            }
+        }
+    }
+
+    
+    public static void main(String args[]){
+        HeapSort1 hs = new HeapSort1();
+        int arr[] = {-1,5,8,2,-6,-8,11,5};
+        hs.sort(arr);
+        System.out.println(Arrays.toString(array));
+    }
 }
