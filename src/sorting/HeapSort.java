@@ -7,11 +7,11 @@ import java.util.Arrays;
  * Given an array sort it using heap sort
  * 
  * Solution:
- * 1. buildHeap (max/min) ?
- * 2. delete each root, and add it to size-1 th element.
+ * 1. buildHeap (max/min)  n * log(n)
+ * 2. delete each root, and add it to size-1 th element. O(n)
  * 
  * Time complexity
- * O(nlogn)
+ * O(nlogn) + O(n) = O(nlogn)
  * 
  * Test cases
  */
