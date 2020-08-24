@@ -40,7 +40,7 @@ public class HeapSort {
     private void buildHeap(int arr[]) {
 
         for (int i = arr.length - 1; i > -1; i--) {
-            heapify(arr, i, arr.length - 1);
+            heapify(arr, i, arr.length); //size is same.
         }
     }
 
