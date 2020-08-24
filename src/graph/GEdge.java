@@ -50,21 +50,17 @@ public class GEdge<T>{
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((vertex1 == null) ? 0 : vertex1.hashCode());
-        result = prime * result + ((vertex2 == null) ? 0 : vertex2.hashCode());
-        return result;
+        
+        return Objects.hash(vertex1, vertex2);
     }
 
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
+        if (obj == null || getClass() != obj.getClass())
             return false;
-        if (getClass() != obj.getClass())
-            return false;
+
         GEdge other = (GEdge) obj;
         if (vertex1 == null) {
             if (other.vertex1 != null)
