@@ -1,4 +1,4 @@
-//With whikle loop instead of regression
+//With while loop instead of regression
 public class HeapSort1 {
 
     public void sort(int arr[]){
@@ -13,7 +13,7 @@ public class HeapSort1 {
             swap(arr, 0, i);
 
             //heapify only non deleted nodes.
-            heapifyLoop(arr, 0, i );
+            heapifyLoop(arr, 0, i);   // i == size to ignore ith element
             System.out.println(Arrays.toString(arr));
 
         }
@@ -61,12 +61,12 @@ public class HeapSort1 {
                         swap(arr, element, leftChildIdx);
                         element = leftChildIdx;
                     }
-                } else if (arr[element] < arr[leftChildIdx]) {
+                } else if (arr[element] < arr[leftChildIdx]) { //if false (already ordered), should go with else and terminate loop
 
                     swap(arr, element, leftChildIdx);
                     element = leftChildIdx;
                 } else {
-
+                    //should break, else loop will ever continue
                     break;
                 }
             } else {
