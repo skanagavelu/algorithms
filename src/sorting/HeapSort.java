@@ -9,7 +9,8 @@ import java.util.Arrays;
  * Solution:
  * 1. buildHeap (max/min)  n * log(n)
  * 2. delete each root, and add it to size-1 th element. O(n)
- * 
+ * 3. heapify :: Ensure newly changed position is ensuring heap property, by checking its children
+ 
  * Time complexity
  * O(nlogn) + O(n) = O(nlogn)
  * 
