@@ -5,13 +5,14 @@ public class RabinKarpSubstringSearch_PatternMatching {
 	/**
 	 * A hashtable works by taking the modulus of the hash over the number of buckets.
 
-		It's important in a hashtable not to produce collisions for likely cases, 
-		since collisions reduce the efficiency of the hashtable.
+           It's important in a hashtable not to produce collisions for likely cases, 
+	   since collisions reduce the efficiency of the hashtable.
 
-		Now, suppose someone puts a whole bunch of values into a hashtable
-		 that have some relationship between the items, like all having the same first character.
-		  This is a fairly predictable usage pattern, 
-		  I'd say, so we don't want it to produce too many collisions.
+     	   Now, suppose someone puts a whole bunch of values into a hashtable
+	   that have some relationship between the items, like all having the same first character.
+	   This is a fairly predictable usage pattern, 
+           I'd say, so we don't want it to produce too many collisions.
+	   <PRE>
 		  
 	 * Input       Modulo 8    Modulo 7
 		0           0           0
@@ -33,7 +34,7 @@ public class RabinKarpSubstringSearch_PatternMatching {
 		18          0           4
 		21          3           0
 
-
+         </PRE>
 	 * @param args
 	 */
 	
