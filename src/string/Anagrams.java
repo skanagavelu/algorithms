@@ -1,4 +1,9 @@
 package string;
+/*
+ * An anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
+ * typically using all the original letters exactly once.
+ * LISTEN --> SILENT
+ */
 public class Anagrams {
 	public static void main(String[] args) {
 		int k = 4;
