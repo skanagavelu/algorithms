@@ -74,6 +74,8 @@ public class RabinKarpSubstringSearch_PatternMatching {
             // before entering this loop, still we should start with 0, to remove 0th index from initial hash.
             if (mainStringHash == subStringHash &&
                 Arrays.equals(Arrays.copyOfRange(mainString, i+1, i+1  + subString.length), subString)) {
+                System.out.println("i+1: "+i+1); // i=0, i+1= 1
+                System.out.println("i+1+subString.length: "+i+1+subString.length);//i==0 then 0+1+subString.length(3)==4: (1,4)
                 System.out.println(true);
                 return;
             }
