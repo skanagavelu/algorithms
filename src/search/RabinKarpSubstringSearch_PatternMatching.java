@@ -33,10 +33,10 @@ public class RabinKarpSubstringSearch_PatternMatching {
 		15          6           1
 		18          0           4
 		21          3           0
-
-         </PRE>
-	 * @param args
 	 */
+    static int hash = 3; //usually it should be 31, for debugging purpose reduced to 3.
+    public static void main(String[] args) {
+
         char[] mainString = "aabc".toCharArray();
         char[] subString = "abc".toCharArray();
         int subStringHash = buildHash(subString, 0, subString.length);
@@ -63,9 +63,11 @@ public class RabinKarpSubstringSearch_PatternMatching {
             mainStringHash = mainStringHash / hash;
 
 
-            // mainString[i+subString.length] : "babc" initial char "b" is ignored, and we need to include till "c",
-            // hence subString.length
-            // Math.pow(hash, subString.length-1):first char pow is 0, so for three char length the pow goes to max 2
+            // mainString[i+subString.length]; "babc" initial char "b" is ignored, and we need to include till "c",
+            // so total four char; hence subString.length
+	    // 	
+            // Math.pow(hash, subString.length-1);  here subString.length-1; -1 is used because
+            // first char pow is 0, so for three char length the pow goes to max of 2
             mainStringHash = mainStringHash + (int)Math.pow(hash, subString.length-1) * mainString[i+subString.length];
 
             // i+1;  because it is computed for i+1th char after removing ith char, ith char is already not matched
@@ -76,9 +78,12 @@ public class RabinKarpSubstringSearch_PatternMatching {
                 return;
             }
         }
+
         System.out.println(false);
     }
 
+    //Normal hash, not rolling
+    //ASCII value is used for each char	
     public static int buildHash(char[] subString, int offset, int length) {
 
         int result = 0; // Ensure first char is simple ASCII value, so that we can remove
