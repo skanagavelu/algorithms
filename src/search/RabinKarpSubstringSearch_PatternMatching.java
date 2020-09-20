@@ -55,9 +55,9 @@ public class RabinKarpSubstringSearch_PatternMatching {
 
             /*  building rolling hash:
              * -------------------------
-             *  new_hash = old_hash - val(old_char)
+             *  new_hash = old_hash - ASCII.Val(old_char)
              *  new_hash = new_hash / prime
-             *  new_hash = new_hash + Math.pow(prime, subStringLength) + val(new_char)
+             *  new_hash = new_hash + Math.pow(prime, subStringLength) + ASCII.Val(new_char)
              */
             mainStringHash = mainStringHash - mainString[i];
             mainStringHash = mainStringHash / hash;
@@ -82,8 +82,9 @@ public class RabinKarpSubstringSearch_PatternMatching {
         System.out.println(false);
     }
 
-    //Normal hash, not rolling
-    //ASCII value is used for each char	
+    // Normal hash, not rolling
+    // ASCII value is used for each char	
+    // The very first char power=0, so ASCII value of first char(a=96) is added, so that it can easily subracted while rolling hash.
     public static int buildHash(char[] subString, int offset, int length) {
 
         int result = 0; // Ensure first char is simple ASCII value, so that we can remove
