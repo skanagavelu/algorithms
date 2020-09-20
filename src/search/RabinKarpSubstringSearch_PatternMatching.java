@@ -60,8 +60,8 @@ public class RabinKarpSubstringSearch_PatternMatching {
              *  new_hash = new_hash + Math.pow(prime, subStringLength) + ASCII.Val(new_char)
              */
             mainStringHash = mainStringHash - mainString[i];
-            mainStringHash = mainStringHash / hash;
-
+	    //below makes (second_char * prime) to simple ASCII.Val(second_char) and all other chrs/prime	
+            mainStringHash = mainStringHash / hash; 
 
             // mainString[i+subString.length]; "babc" initial char "b" is ignored, and we need to include till "c",
             // so total four char; hence subString.length
