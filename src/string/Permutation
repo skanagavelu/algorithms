@@ -47,9 +47,12 @@ public class Permutation {
         }
         else {
 
-            for (int i = level; i <= height; i++) {
+            // On every level number of branches are differing, hence we need for loop
+            // if it is fixed binary tree, number of branches are fixed, no for loop required.
+            // {i = level} ensures before the Levelth character is untouched/fixed
+            for (int i = level; i <= height; i++) { 
                 swap(s, level, i);
-                permutation(s, level + 1, height);
+                permutation(s, level + 1, height);  // go for next level, DFS
                 swap(s, level, i); //Backtracking/reverting to old state while returing
             }
         }
