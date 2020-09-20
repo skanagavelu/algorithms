@@ -7,7 +7,9 @@ public class Permutation {
 
     public static void main(String[] args) {
         char [] s = {'a','b','c'};
-        permutation(s, 0, 2);
+        int level = 0;
+        int height = 2;
+        permutation(s, level, height);
     }
 
     /*
@@ -48,7 +50,7 @@ public class Permutation {
             for (int i = level; i <= height; i++) {
                 swap(s, level, i);
                 permutation(s, level + 1, height);
-                swap(s, level, i);
+                swap(s, level, i); //Backtracking/reverting to old state while returing
             }
         }
     }
