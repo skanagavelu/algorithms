@@ -50,70 +50,7 @@ public class MatrixSpiralPrint {
 		System.out.println("------------------\n");
 		
 		printSpiralSolution2(m);
-	}
-
-	/**
-	 * The first solution is cumbersome of variables and it wont solve rectangular matrix
-	 * @param matrix
-	 */
-	private static void printSpiralSolution1(int[][] matrix) {
-		int leftToRightEnd = matrix[0].length - 1;
-		int topToBottomEnd = matrix.length - 1;
-		int rightToLeftEnd = 0;
-		int bottomToTopEnd = 0;
-		int leftToRight = 0;
-		int topToBottom = 1 ;
-		int rightToLeft = leftToRightEnd -1 ;
-		int bottomToTop = topToBottomEnd -1;
-		
-		for(;;) {
-			
-			int leftToRightStart = leftToRight;
-			
-			for(; leftToRight <= leftToRightEnd; leftToRight ++) {
-				System.out.print("[" + matrix[bottomToTopEnd][leftToRight] + "], ");
-			}
-			bottomToTopEnd ++;
-			leftToRightEnd --;
-			leftToRight --;
-			
-			int topToBottomStart = topToBottom;
-			for(; topToBottom <= topToBottomEnd; topToBottom ++) {
-				System.out.print("[" +matrix[topToBottom][leftToRight]+ "], ");
-				
-			}
-			
-			topToBottomEnd --;
-			topToBottom --;
-			
-			int rightToLeftStart = rightToLeft;
-			for(; rightToLeft >= rightToLeftEnd; rightToLeft --) {
-				System.out.print("[" + matrix[topToBottom][rightToLeft]+ "], ");
-			}
-			rightToLeftEnd ++;
-			rightToLeft ++;
-			
-			int bottomToTopStart = bottomToTop;
-			for(; bottomToTop >= bottomToTopEnd; bottomToTop --) {
-				System.out.print("[" + matrix[bottomToTop][rightToLeft]+ "], ");
-			}
-			
-			System.out.println();
-			
-			leftToRight = leftToRightStart + 1;
-			topToBottom = topToBottomStart + 1;
-			rightToLeft = rightToLeftStart - 1;
-			bottomToTop = bottomToTopStart - 1;
-			
-			if( leftToRight == (( (matrix[0].length - 1)/2) + 1)) {
-				break;
-			}
-			
-		} //End for(;;) 
-	}
-	
-	
-	
+	}	
 	
 	/**
 	 * The second solution is simple and it will solve all type [RECTANGLE] or [SQUARE] of matrix.
@@ -175,5 +112,67 @@ public class MatrixSpiralPrint {
 		for(int b2t = endi; b2t > starti; b2t -- ) {
 			System.out.print("[" + matrix[b2t][startj]+ "], ");
 		}
+	}
+	
+	
+	
+		/**
+	 * The first solution is cumbersome of variables and it wont solve rectangular matrix
+	 * @param matrix
+	 */
+	private static void printSpiralSolution1(int[][] matrix) {
+		int leftToRightEnd = matrix[0].length - 1;
+		int topToBottomEnd = matrix.length - 1;
+		int rightToLeftEnd = 0;
+		int bottomToTopEnd = 0;
+		int leftToRight = 0;
+		int topToBottom = 1 ;
+		int rightToLeft = leftToRightEnd -1 ;
+		int bottomToTop = topToBottomEnd -1;
+		
+		for(;;) {
+			
+			int leftToRightStart = leftToRight;
+			
+			for(; leftToRight <= leftToRightEnd; leftToRight ++) {
+				System.out.print("[" + matrix[bottomToTopEnd][leftToRight] + "], ");
+			}
+			bottomToTopEnd ++;
+			leftToRightEnd --;
+			leftToRight --;
+			
+			int topToBottomStart = topToBottom;
+			for(; topToBottom <= topToBottomEnd; topToBottom ++) {
+				System.out.print("[" +matrix[topToBottom][leftToRight]+ "], ");
+				
+			}
+			
+			topToBottomEnd --;
+			topToBottom --;
+			
+			int rightToLeftStart = rightToLeft;
+			for(; rightToLeft >= rightToLeftEnd; rightToLeft --) {
+				System.out.print("[" + matrix[topToBottom][rightToLeft]+ "], ");
+			}
+			rightToLeftEnd ++;
+			rightToLeft ++;
+			
+			int bottomToTopStart = bottomToTop;
+			for(; bottomToTop >= bottomToTopEnd; bottomToTop --) {
+				System.out.print("[" + matrix[bottomToTop][rightToLeft]+ "], ");
+			}
+			
+			System.out.println();
+			
+			leftToRight = leftToRightStart + 1;
+			topToBottom = topToBottomStart + 1;
+			rightToLeft = rightToLeftStart - 1;
+			bottomToTop = bottomToTopStart - 1;
+			
+			if( leftToRight == (( (matrix[0].length - 1)/2) + 1)) {
+				break;
+			}
+			
+		} //End for(;;) 
 	}
 }
