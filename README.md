@@ -1,2 +1,2 @@
 # algorithms
-Java programs related to algorithms
+Algorithms those written in java8
