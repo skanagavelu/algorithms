@@ -1,4 +1,4 @@
-package search;
+package divideConquer;
 
 /**
  * Have a look at Arrays.binarySearch(int[] a, int fromIndex, int toIndex,

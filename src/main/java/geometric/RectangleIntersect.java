@@ -1,4 +1,4 @@
-package misc;
+package geometric;
 
 /**
  * http://www.geeksforgeeks.org/find-two-rectangles-overlap/
