@@ -5,15 +5,15 @@ import java.util.Arrays;
 /**
  * Heap Sort
  * Given an array sort it using heap sort
- * 
+ *
  * Solution:
  * 1. buildHeap (max/min)  n * log(n)
  * 2. delete each root, and add it to size-1 th element. O(n)
  * 3. heapify :: Ensure newly changed position is ensuring heap property, by checking its children
- 
+
  * Time complexity
  * O(nlogn) + O(n) = O(nlogn)
- * 
+ *
  * Test cases
  */
 public class HeapSort {
@@ -79,11 +79,11 @@ public class HeapSort {
         }
     }
 
-    
+
     public static void main(String args[]){
         HeapSort1 hs = new HeapSort1();
         int arr[] = {-1,5,8,2,-6,-8,11,5};
         hs.sort(arr);
-        System.out.println(Arrays.toString(array));
+//        System.out.println(Arrays.toString(array));
     }
 }

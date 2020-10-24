@@ -1,3 +1,7 @@
+package sorting;
+
+import java.util.Arrays;
+
 //With while loop instead of regression
 public class HeapSort1 {
 
@@ -30,7 +34,7 @@ public class HeapSort1 {
     private void buildHeap(int arr[]) {
 
         for (int i = arr.length - 1; i > -1; i--) {
-            heapify(arr, i, arr.length); //size is same.
+//            heapify(arr, i, arr.length); //size is same.
             System.out.println(Arrays.toString(arr));
 
         }
@@ -75,7 +79,7 @@ public class HeapSort1 {
             }
         }
     }
-    
+
     public static void main(String args[]){
         HeapSort1 hs = new HeapSort1();
         int arr[] = {-1,5,8,2,-6,-8,11,5};
