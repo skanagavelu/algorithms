@@ -81,9 +81,10 @@ public class HeapSort {
 
 
     public static void main(String args[]){
-        HeapSort1 hs = new HeapSort1();
+        HeapSort hs = new HeapSort();
         int arr[] = {-1,5,8,2,-6,-8,11,5};
         hs.sort(arr);
-//        System.out.println(Arrays.toString(array));
+        // [-8, -6, -1, 2, 5, 5, 8, 11]
+        System.out.println(Arrays.toString(arr));
     }
 }

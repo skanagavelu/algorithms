@@ -10,7 +10,7 @@ public class RemoveDuplicateFromSortedArray {
 	public static void main(String[] args) {
 		print();
 		int writer = 0;
-		for (int i=1; i<arr.length; i++) {
+		for (int i = 1; i < arr.length; i++) {
 			if (arr[writer] != arr[i]) {
 				arr[++writer] = arr[i];
 			}

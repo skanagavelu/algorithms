@@ -64,6 +64,17 @@ public class NQueens {
     public static void main(String args[]) {
         NQueens s = new NQueens();
         int[] positions = s.solveNQueenOneSolution(4);
-//        Arrays.stream(positions).forEach(column -> System.out.println(column));
+        Arrays.stream(positions).forEach(column -> System.out.println(column));
     }
+
+
+    /*         0    1    2    3
+           0   q1   -    -    q
+           1   -    -    -    q2
+           2   -    q    q3   -
+           3   -    -    -    -
+
+           q3 is under attack by q1 due to row - col
+           q3 is under attack by q2 due to row + col
+     */
 }

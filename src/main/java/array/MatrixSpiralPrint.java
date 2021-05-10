@@ -63,7 +63,7 @@ public class MatrixSpiralPrint {
 		int endj = matrix[0].length - 1;
 
 		/*
-		 * This loop is enough for SQURE matrix
+		 * This loop is enough for SQUARE matrix
 		 * Pass diagonal elements ordinal from start and end e.g: (1,1) (2,2) (3,3)
 		 * If diagonal crosses then that is the end point for this.
 		 */

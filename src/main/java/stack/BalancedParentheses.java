@@ -13,29 +13,29 @@ import java.util.Arrays;
  * @author kanagavelusugumar
  *
  */
-public class BalancedParentheses {	
-	public static List<String>  OPEN_PARAEN = Arrays.asList(new String []  {"{",  "(",  "["});
-	public static List<String>  CLOSE_PARAEN = Arrays.asList(new String [] {"}",  ")",  "]"});
+public class BalancedParentheses {
 
-	
+	public static List<String>  OPEN_PARENTHESES = Arrays.asList("{", "(", "[");
+	public static List<String>  CLOSE_PARENTHESES = Arrays.asList("}", ")", "]");
+
 	public static void main(String[] args) {
 		
-		String[] parentheses = {"{", "{", "(", ")", "}", "}"};
+		String[] inputs = {"{", "{", "(", ")", "}", "}"};
 //		String[] parentheses = {"{", "{", "(", ")", ")", "}", "}"};
 
 		Stack validate = new Stack();
 		
-		for(int count = 0; count <  parentheses.length; count++) {
-			String paranthese = parentheses[count];
-			int index = CLOSE_PARAEN.indexOf(paranthese);
+		for(int idx = 0; idx <  inputs.length; idx++) {
+			String parenthesis = inputs[idx];
+			int closeParenthesisIndex = CLOSE_PARENTHESES.indexOf(parenthesis);
 			
-			if(index == -1) {
-				validate.push(paranthese);
+			if(closeParenthesisIndex == -1) {
+				validate.push(parenthesis);
 			} else {
-				//Get the open paranthese for corresponding close paranthese.
-				paranthese = OPEN_PARAEN.get(index);
-				if(!paranthese.equals(validate.pop())) {
-					System.out.println("Invalid paranthese found: " + parentheses[count] + " at index: " + count);
+				//Get the open parenthesis for corresponding close parenthesis.
+				parenthesis = OPEN_PARENTHESES.get(closeParenthesisIndex);
+				if(!parenthesis.equals(validate.pop())) {
+					System.err.println("Invalid parenthesis found: " + inputs[idx] + " at index: " + idx);
 					return;
 				}
 			}

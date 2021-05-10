@@ -1,9 +1,23 @@
 package string;
 import java.util.LinkedList;
 
+/**
+ * https://www.geeksforgeeks.org/length-of-the-longest-substring-without-repeating-characters/
+ *
+ * Given a string str, find the length of the longest substring without repeating characters.
+ *
+ * For “ABDEFGABEF”, the longest substring are “BDEFGA” and “DEFGAB”, with length 6.
+ * For “BBBB” the longest substring is “B”, with length 1.
+ */
 public class LongestUniqueCharSubString {
 	
 	public static void main(String[] args) {
+		System.out.println(longestUniqueCharSubString1("ABDEFGABEF"));
+		System.out.println(longestUniqueCharSubString2("ABDEFGABEF"));
+
+		System.out.println(longestUniqueCharSubString1("BBBB"));
+		System.out.println(longestUniqueCharSubString2("BBBB"));
+
 		System.out.println(longestUniqueCharSubString1("ABCDEFSRCQWUVZIOP"));
 		System.out.println(longestUniqueCharSubString2("ABCDEFSRCQWUVZIOP"));
 	}
@@ -28,10 +42,8 @@ public class LongestUniqueCharSubString {
 						break;
 					}
 				}
-				list.offerFirst(current);
-			} else {
-				list.offerFirst(current);
 			}
+			list.offerFirst(current);
 		}
 		result = Math.max(result, list.size());
 		return result;

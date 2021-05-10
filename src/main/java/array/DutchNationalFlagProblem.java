@@ -12,7 +12,7 @@ public class DutchNationalFlagProblem {
 	
     /**
      * Start three pointer i(start; points till all left side zeros), 
-     *                     j(start; probagates till k crosses) and 
+     *                     j(start; propagates till k crosses) and
      *                     k(end; points till all right side ones).
      */
    	private static void solveIt(int[] a) {

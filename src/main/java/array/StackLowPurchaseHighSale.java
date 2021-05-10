@@ -20,13 +20,14 @@ public class StackLowPurchaseHighSale {
       int minTmp = array[0];
       
       for(int i = 1; i < array.length; i++) {
-    	  int currentIndxVal = array[i];
-    	  if(currentIndxVal < min && currentIndxVal < minTmp) {
-    		  minTmp = currentIndxVal;
+
+    	  int currentIndexVal = array[i];
+    	  if(currentIndexVal < min && currentIndexVal < minTmp) {
+    		  minTmp = currentIndexVal;
     	  }
-    	  else if ( (currentIndxVal - minTmp ) >  (max - min)) {
+    	  else if ( (currentIndexVal - minTmp ) >  (max - min)) {
     		  min = minTmp;
-    		  max = currentIndxVal;
+    		  max = currentIndexVal;
     	  }
       }
       System.out.println("Min/Max : " + min + "/" + max);

@@ -32,14 +32,14 @@ public class TwoWordsAreAnagram {
 			return false;
 		}
 		int[] characters = new int[256];
-		for(int i = 0; i< string1.length(); i++){
+		for(int i = 0; i < string1.length(); i++){
 //			characters[string1.charAt(i)] += 1; 
 //			characters[string2.charAt(i)] -= 1; 
 			//The below is the same like above
 			characters[string1.charAt(i)]++; 
 			characters[string2.charAt(i)]--; 
 		}
-		for(int i = 0; i< string1.length(); i++){
+		for(int i = 0; i < string1.length(); i++){
 			if(characters[i] != 0) {
 				return false;
 			} 

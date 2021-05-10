@@ -7,22 +7,22 @@ public class FindOddNumberOfRepeat {
 
 		int[] v = {1,1,2,2,3,3,3,4,4,5,5};
 		
-		int odd_repeat_count = 0;
-		int number_count = 1;
-		for (int i=1; i<v.length; i++) {
+		int oddRepeatCount = 0;
+		int numberCount = 1;
+		for (int i = 1; i < v.length; i++) {
 			
 			if (v[i] == v[i-1]) {
-				number_count++;
+				numberCount++;
 			} else {
-				int s = number_count & 1;
+				int s = numberCount & 1;
 				if (s == 1) {
-					odd_repeat_count++;
+					oddRepeatCount++;
 				}
-				number_count = 1;
+				numberCount = 1;
 			}
 		}
 		
-		System.out.println(odd_repeat_count);
+		System.out.println(oddRepeatCount);
 	}
 
 }

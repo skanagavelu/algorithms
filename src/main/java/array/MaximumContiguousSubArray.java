@@ -23,26 +23,24 @@ public class MaximumContiguousSubArray {
       
       // Below is to compare larger sum after encountering 0, and continuing finding
       int currentStart = 0;
-      int currentEnd = 0;
       int sumSoFar = 0;
 
       
       for(int i = 0; i < array.length; i++) {
-    	  int currentIndxVal = array[i];
+    	  int currentIndexVal = array[i];
     	  
     	  // When less than or equal to zero 
     	  // Then there is no use of holding the previous values, let freshly start
-    	  if(currentIndxVal + sumSoFar <= 0  ) {
+    	  if(currentIndexVal + sumSoFar <= 0  ) {
     		  currentStart = i + 1;
-    		  currentEnd = i + 1;
     		  sumSoFar = 0;
     	  }
-    	  else if ( (currentIndxVal + sumSoFar ) >  (sum)) { 
+    	  else if ( (currentIndexVal + sumSoFar ) >  (sum)) {
     		  start = currentStart;
     		  end = i;
-    		  sum =  sumSoFar = currentIndxVal + sumSoFar;
+    		  sum =  sumSoFar = currentIndexVal + sumSoFar;
     	  } else {
-    		  sumSoFar += currentIndxVal;
+    		  sumSoFar += currentIndexVal;
     	  }
       }
       System.out.println("Start/End/Sum : " + start + "/" + end + "/" + sum);

@@ -1,4 +1,7 @@
 package string;
+
+import java.lang.reflect.Array;
+
 /*
  * An anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
  * typically using all the original letters exactly once.
@@ -6,8 +9,8 @@ package string;
  */
 public class Anagrams {
 	public static void main(String[] args) {
-		int k = 4;
-		printAnagrams("ABCDE".toCharArray(), k);
+		int k = 3;
+		printAnagrams("ABC".toCharArray(), k);
 	}
 
 	public static void printAnagrams(char[] set, int anagramLength) {
@@ -15,32 +18,38 @@ public class Anagrams {
 		printAnagrams(set, "", inputLength, anagramLength);
 	}
 
-	public static void printAnagrams(char[] set, String angram, int inputLength,
-			int anagramLength) {
+	public static void printAnagrams(char[] chars, String prefix, int inputLength, int anagramLength) {
 
 		if (anagramLength == 0) {
-			System.out.println(angram);
+			System.out.println(prefix);
 			return;
 		}
 
 		for (int i = 0; i < inputLength; ++i) {
-			String newPrefix = angram + set[i];
-			
-//			char[] newset = new char[set.length];
-//			for(int itr = 0; itr < set.length; itr++) {
-//				if(itr < i){
-//				newset[itr] = set[itr]; }
-//				else if (itr == i){
-//					continue;
-//				}
-//				else {
-//					newset[itr-1] = set[itr];
-//				}
-//			}
-
-			StringBuilder s = new StringBuilder(new String(set));
-            s.deleteCharAt(i);
-            printAnagrams(s.toString().toCharArray(), newPrefix, s.toString().toCharArray().length, anagramLength - 1);
+			String newPrefix = prefix + chars[i];
+			//char[] remainingChars = new StringBuilder(new String(chars)).deleteCharAt(i).toString().toCharArray();
+			char[] remainingChars = removeElement(chars, i);
+            printAnagrams(remainingChars, newPrefix, remainingChars.length, anagramLength - 1);
 		}
+	}
+
+	public static char[] removeElement(char[] source, int removedIdx) {
+
+		char[] target = new char[source.length - 1];
+		System.arraycopy(source, 0, target, 0, removedIdx); //copy up to removedIdx
+		// -1 as there is one element short in the target
+		System.arraycopy(source, removedIdx + 1, target, removedIdx, source.length - removedIdx - 1);// copy after removedIdx but one less
+		return target;
+	}
+
+// For generics
+	public static <T> T[] removeElement(T[] source, Class<T> clazz, int removedIdx) {
+
+		@SuppressWarnings("unchecked")
+		T[] target = (T[]) Array.newInstance(clazz, source.length - 1);
+		System.arraycopy(source, 0, target, 0, removedIdx); //copy up to removedIdx
+		// -1 as there is one element short in the target
+		System.arraycopy(source, removedIdx + 1, target, removedIdx, source.length - removedIdx - 1);// copy after removedIdx but one less
+		return target;
 	}
 }
