@@ -19,8 +19,8 @@ public class PixelColourChange {
         }
 
         Point startAt = new Point(1, 1);
-        int from = pixels[1][1];
-        performColourChange(pixels, startAt,  from, 8);
+        int fromColour = pixels[1][1];
+        performColourChange(pixels, startAt,  fromColour, 8);
 
         System.out.println("After");
 

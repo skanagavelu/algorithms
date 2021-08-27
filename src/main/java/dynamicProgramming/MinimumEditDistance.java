@@ -10,7 +10,9 @@ public class MinimumEditDistance {
         char[] target = "azced".toCharArray();
 
         int[][] editDistanceMatrix = buildEditDistanceMatrix(source, target);
-        System.out.println(Arrays.deepToString(editDistanceMatrix));
+//        System.out.println(Arrays.deepToString(editDistanceMatrix));
+        System.out.println("source : " + Arrays.toString(source));
+        System.out.println("target : " + Arrays.toString(target));
         printTraversalBottom2Top(editDistanceMatrix, source, target);
     }
 
@@ -35,6 +37,14 @@ public class MinimumEditDistance {
             editDistMatrix[row][0] = row;
         }
 
+        // editDistMatrix
+        //[[0, 1, 2, 3, 4, 5, 6],
+        // [1, 0, 0, 0, 0, 0, 0],
+        // [2, 0, 0, 0, 0, 0, 0],
+        // [3, 0, 0, 0, 0, 0, 0],
+        // [4, 0, 0, 0, 0, 0, 0],
+        // [5, 0, 0, 0, 0, 0, 0]]
+
         //m*n operation
         for (int i = 1; i < target.length + 1; i++) { //row
 
@@ -48,13 +58,19 @@ public class MinimumEditDistance {
 
                     //1 is edit operation required
                     //may be diagonal but still substitution, so +1
-                    editDistMatrix[i][j] = 1 + smallestOfThree(editDistMatrix[i-1][j-1],
-                                                               editDistMatrix[i-1][j],
-                                                               editDistMatrix[i][j-1]);
+                    editDistMatrix[i][j] = 1 + smallestOfThree(editDistMatrix[i-1][j-1], //Diagonal : Substitution
+                                                               editDistMatrix[i-1][j],   //Top : Insertion
+                                                               editDistMatrix[i][j-1]);  //Left : Deletion
                 }
             }
         }
 
+        //[[0, 1, 2, 3, 4, 5, 6],
+        // [1, 0, 1, 2, 3, 4, 5],
+        // [2, 1, 1, 2, 3, 4, 5],
+        // [3, 2, 2, 1, 2, 3, 4],
+        // [4, 3, 3, 2, 2, 2, 3],
+        // [5, 4, 4, 3, 2, 3, 3]]
         return editDistMatrix;
     }
 
