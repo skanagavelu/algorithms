@@ -43,7 +43,7 @@ public class BinarySearch {
 			int mid = (low + high) >>> 1; //Left shift will double the value, right shit divides by 2
 			long midVal = array[mid];
 
-			if (array[mid] == key) return mid;
+			if (midVal == key) return mid;
 
 			if (midVal < key)
 				low = mid + 1;      //NOTE remember this
@@ -52,4 +52,18 @@ public class BinarySearch {
 		}
 		return -(low);              // key not found; till which direction with index
 	}
+
+
+	/* can not use ternary when equal needs return and other cases are void.
+	  midVal.compareTo(key) < low = mid + 1 : a : a.compareTo(b) > 0 ? b : 0
+
+	  But if else works
+	  		if (midVal.compareTo(key) == 0 ) return mid;
+
+			if (midVal.compareTo(key) < 0)
+				low = mid + 1;      //NOTE remember this
+			else
+				high = mid - 1;     //NOTE remember this
+	 */
+
 }

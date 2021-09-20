@@ -17,15 +17,19 @@ package string;
  *
  */
 public class TwoWordsAreAnagram {
+
 	public static void main(String[] args) {
 		String[] in = { "node", "salvador dali", "stream" };
 		String[] out = { "done", "avida dollars", "master" };
 		for(int i = 0; i< in.length; i++){
+
 			boolean result = isAnagram(in[i], out[i]);
 			System.out.println(result);
 		}
-		
 	}
+
+	// We could possibly check the anagrams with MultiSet :: Guava instead of int[] characters = new int[256]
+	// MultiSet.add("char", 1), MultiSet.remove("char", 1) and finally MultiSet should be empty.
 
 	private static boolean isAnagram(String string1, String string2) {
 		if(string1 == null || string2 == null || string1.length() != string2.length()) {
@@ -46,7 +50,7 @@ public class TwoWordsAreAnagram {
 		}
 		return true;
 	}
-	
+
 //	by Makoto
 //	public boolean isAnagram(String firstWord, String secondWord) {
 //	     char[] word1 = firstWord.replaceAll("[\\s]", "").toCharArray();

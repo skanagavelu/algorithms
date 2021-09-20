@@ -12,8 +12,10 @@ public class FindOddNumberOfRepeat {
 		for (int i = 1; i < v.length; i++) {
 			
 			if (v[i] == v[i-1]) {
+
 				numberCount++;
 			} else {
+
 				int s = numberCount & 1;
 				if (s == 1) {
 					oddRepeatCount++;
@@ -24,5 +26,4 @@ public class FindOddNumberOfRepeat {
 		
 		System.out.println(oddRepeatCount);
 	}
-
 }

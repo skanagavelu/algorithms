@@ -4,6 +4,13 @@ import java.util.Arrays;
 
 /*
  * Courtesy: https://www.youtube.com/watch?v=GuTPwotSdYw&t=351s
+ * Anagram is "a word or phrase spelled by rearranging the letters of another word or phrase".
+ * So to be an anagram the arrangement of letters must make a word - that is, an anagram of a word must have a meaning.
+ *
+ * On the other hand, permutation is defined as "the act of changing the arrangement of a given number of elements". So
+ * a permutation of a word can be any random assortment of characters, not necessarily having a meaning in the original language.
+ *
+ * So every anagram is a permutation of the word, but every permutation is not an anagram.
  */
 public class Permutation {
 
@@ -19,9 +26,9 @@ public class Permutation {
      * So its branch out 3 leafs first as that is the length of string, then keep reducing one branch each level.
      *
      * Branches will be
-     * A swap with A
-     * A swap with B
-     * A swap with C
+     * A swap with A   ==> ABC
+     * A swap with B   ==> BAC
+     * A swap with C   ==> CBA
      * And in the next level A is FIXED
      *
      * At first level only root node ABC
@@ -35,7 +42,7 @@ public class Permutation {
      * For ABC at L0
      * L1. First A will be swapped with A itself
      * L2. Then A fixed B will swap B itself, now C is single char all others are already fixed, so go back to L1
-     * L1. Now B can swap with C and Reach L2, go back L2, nothing to further change, go back to L0
+     * L1. Now B can swap with C and Reach L2, go back L1, nothing to further change, go back to L0
      *
      * Next go back L2 parent B, then B will swap with child C and leaf reached L3 ACB,
      * Now Parent A is reached (step 1), A completed his both children, so back again and reach
@@ -55,7 +62,7 @@ public class Permutation {
             for (int i = level; i <= height; i++) {
                 swap(s, level, i);
                 permutation(s, level + 1, height);  // go for next level, DFS
-                swap(s, level, i); //Backtracking/reverting to old state while returing
+                swap(s, level, i); //Backtracking/reverting to old state while returning
             }
         }
     }
