@@ -47,4 +47,45 @@ public class Bit32SetTest extends TestCase {
 
         assertEquals(bit32Set.cardinality(), bitSet.cardinality());
     }
+
+    @Test
+    public void testCardinalityUpto() {
+
+        Bit32Set bit32Set = new Bit32Set();
+        bit32Set.set(0);
+        assertEquals(bit32Set.cardinality(3), 1);
+        bit32Set.set(1);
+        assertEquals(bit32Set.cardinality(3), 2);
+        bit32Set.set(2);
+        assertEquals(bit32Set.cardinality(3), 3);
+        bit32Set.clear(2);
+        assertEquals(bit32Set.cardinality(3), 2);
+    }
+
+    @Test
+    public void testNextSetBit() {
+
+        Bit32Set bit32Set = new Bit32Set();
+        bit32Set.set(0);
+        assertEquals(bit32Set.nextSetBit(0), 0);
+
+        bit32Set.clear(0);
+        bit32Set.set(1);
+        assertEquals(bit32Set.nextSetBit(0), 1);
+
+        bit32Set.clear(0);
+        bit32Set.clear(1);
+        bit32Set.set(2);
+        assertEquals(bit32Set.nextSetBit(0), 2);
+
+
+        bit32Set.set(0);
+        bit32Set.set(1);
+        bit32Set.set(2);
+        assertEquals(bit32Set.nextSetBit(0), 0);
+        assertEquals(bit32Set.nextSetBit(1), 1);
+        assertEquals(bit32Set.nextSetBit(2), 2);
+    }
+
+
 }

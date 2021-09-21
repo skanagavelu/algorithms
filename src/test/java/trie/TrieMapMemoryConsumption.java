@@ -5,17 +5,18 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import trie.Util.Sequence;
 import static trie.Util.generateRandomString;
 
 public class TrieMapMemoryConsumption {
 
     public static void main(String[] args) {
 
-        Set<String> tokens = new HashSet<>();
-        int size = 100000;
+        Set<Sequence> tokens = new HashSet<>();
+        int size = 50000;
         while (tokens.size() < size) {
 
-            String token = generateRandomString();
+            Sequence token = new Sequence(generateRandomString());
             tokens.add(token);
         }
 
@@ -34,13 +35,13 @@ public class TrieMapMemoryConsumption {
          */
     }
 
-    public static void memoryUsedByTrieMap(Set<String> tokens) {
+    public static void memoryUsedByTrieMap(Set<Sequence> tokens) {
 
-        Map<String, String> trieMap = new TrieMap<>();
+        Map<Sequence, String> trieMap = new TrieMap<>();
         long before = memoryUsed();
-        for (String token : tokens) {
+        for (Sequence token : tokens) {
 
-            trieMap.put(token, token);
+            trieMap.put(token, token.toString());
         }
 
         long used = memoryUsed() - before;
@@ -52,13 +53,13 @@ public class TrieMapMemoryConsumption {
         //        System.out.println(ClassLayout.parseInstance(trieMap).toPrintable());
     }
 
-    public static void memoryUsedByHashMap(Set<String> tokens) {
+    public static void memoryUsedByHashMap(Set<Sequence> tokens) {
 
-        Map<String, String> hashMap = new ConcurrentHashMap<>();
+        Map<Sequence, String> hashMap = new ConcurrentHashMap<>();
         long before = memoryUsed();
-        for (String token : tokens) {
+        for (Sequence token : tokens) {
 
-            hashMap.put(token, token);
+            hashMap.put(token, token.toString());
         }
 
         long used = memoryUsed() - before;

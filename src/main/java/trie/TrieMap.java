@@ -4,6 +4,15 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
+import static trie.Edge.Base10ToBaseX.BASE16;
+
+/**
+ * An object that maps keys to values.  A map cannot contain duplicate keys;
+ * each key can map to at most one value.
+ *
+ * @param <K> the type of keys maintained by this map
+ * @param <V> the type of mapped values
+ */
 public class TrieMap<K, V> implements Map<K, V> {
 
     public Edge<K, V> baseEdge = new LinkedEdge<>();
@@ -41,9 +50,10 @@ public class TrieMap<K, V> implements Map<K, V> {
     @Override
     public V put(K key, V value) {
 
-        V result = baseEdge.put(key, value);
+        int hash = key.hashCode();
+        V result = baseEdge.put(key, value, hash);
 
-        Edge<K, V> newEdge = baseEdge.ensureEfficientAccess(null, key.hashCode(), 1);
+        Edge<K, V> newEdge = baseEdge.ensureEfficientAccess(null, hash, 1);
         if (newEdge != null) {
 
             baseEdge = newEdge;
@@ -154,11 +164,27 @@ class Vertex<K, V> extends LinkedNode<K, V> {
     }
 }
 
+/**
+ * Place holder (either linked or array based) for {@link Vertex} or {@link Edge} itself.
+ *
+ * @param <K> the type of keys maintained by this map
+ * @param <V> the type of mapped values
+ */
 abstract class Edge<K, V> extends LinkedNode<K, V> {
 
+    // Support methods, implementation is overridden.
     abstract LinkedNode<K, V> getElement(int index);
     abstract LinkedNode<K, V> removeElement(int index);
     abstract void setElement(int index, LinkedNode<K, V> node);
+
+    /**
+     * Decide the Edge should be {@link LinkedEdge linked} or {@link ArrayEdge array based}.
+     *
+     * @param parent
+     * @param hash
+     * @param level
+     * @return
+     */
     abstract Edge<K, V> ensureEfficientAccess(Edge<K, V> parent, int hash, int level);
     abstract int size();
 
@@ -169,9 +195,9 @@ abstract class Edge<K, V> extends LinkedNode<K, V> {
         Edge<K, V> edgeAtIndex = this;
 
         //Iterate till maximum levels
-        for (int level = 1, maxRotation = Base10ToBaseX.BASE16.getMaxRotation(); level <= maxRotation; level++) {
+        for (int level = 1, maxRotation = BASE16.getMaxRotation(); level <= maxRotation; level++) {
 
-            int index = Base10ToBaseX.BASE16.getBaseXValueOnAtLevel(hash, level);
+            int index = BASE16.getBaseXValueOnAtLevel(hash, level);
             nodeAtIndex = edgeAtIndex.getElement(index);
             if (nodeAtIndex == null) {
 
@@ -180,7 +206,9 @@ abstract class Edge<K, V> extends LinkedNode<K, V> {
 
                 Vertex<K, V> vertex = (Vertex<K, V>) nodeAtIndex;
                 for (; vertex != null; vertex = vertex.nextVertex) {
-                    if (vertex.key.equals(key)) { //vertex.hashCode() == hash &&
+                    // vertex.hashCode() == hash is never needed as there is no collision of two different hashes
+                    // shares same array index. and vertex.hashCode() == hash is always true.
+                    if (vertex.key.equals(key)) {
                         return vertex.value;
                     }
                 }
@@ -192,17 +220,16 @@ abstract class Edge<K, V> extends LinkedNode<K, V> {
         return null;
     }
 
-    V put(K key, V value) {
+    V put(K key, V value, int hash) {
 
-        int hash = key.hashCode();
         LinkedNode<K, V> nodeAtIndex;
         Edge<K, V> parentEdge = null;
         Edge<K, V> edgeAtLevel = this;
 
         //Iterate till maximum levels
-        for (int level = 1, maxRotation = Base10ToBaseX.BASE16.getMaxRotation(); level <= maxRotation; level++) {
+        for (int level = 1, maxRotation = BASE16.getMaxRotation(); level <= maxRotation; level++) {
 
-            int index = Base10ToBaseX.BASE16.getBaseXValueOnAtLevel(hash, level);
+            int index = BASE16.getBaseXValueOnAtLevel(hash, level);
             nodeAtIndex = edgeAtLevel.getElement(index);
             if (nodeAtIndex == null) {
 
@@ -235,8 +262,8 @@ abstract class Edge<K, V> extends LinkedNode<K, V> {
                 edgeAtLevel = newEdge;
 
                 level = level + 1;
-                int newIndex = Base10ToBaseX.BASE16.getBaseXValueOnAtLevel(hash, level);
-                int vertexIndex = Base10ToBaseX.BASE16.getBaseXValueOnAtLevel(vertexAtIndexHash, level);
+                int newIndex = BASE16.getBaseXValueOnAtLevel(hash, level);
+                int vertexIndex = BASE16.getBaseXValueOnAtLevel(vertexAtIndexHash, level);
                 while (vertexIndex == newIndex && level < maxRotation) {
 
                     newEdge = new LinkedEdge<>();
@@ -244,8 +271,8 @@ abstract class Edge<K, V> extends LinkedNode<K, V> {
                     edgeAtLevel = newEdge;
 
                     level = level + 1;
-                    newIndex = Base10ToBaseX.BASE16.getBaseXValueOnAtLevel(hash, level); //newVertex.key.hashCode()
-                    vertexIndex = Base10ToBaseX.BASE16.getBaseXValueOnAtLevel(vertexAtIndexHash, level);
+                    newIndex = BASE16.getBaseXValueOnAtLevel(hash, level); //newVertex.key.hashCode()
+                    vertexIndex = BASE16.getBaseXValueOnAtLevel(vertexAtIndexHash, level);
                 }
 
                 if (level == maxRotation) {
@@ -273,17 +300,23 @@ abstract class Edge<K, V> extends LinkedNode<K, V> {
 
     protected static enum Base10ToBaseX {
 
-        BASE16(15, 4, 8);
+        BASE16(15, 4, 8, 11, 8);
 
         private final int mask;
         private final int bitCount;
         private final int maxRotation;
+        private final int linkToArraySize;
+        private final int arrayToLinkSize;
 
-        Base10ToBaseX(int levelZeroMask, int levelOneRotation, int maxPossibleRotation) {
+
+        Base10ToBaseX(int levelZeroMask, int levelOneRotation,
+                      int maxPossibleRotation, int linkToArraySize, int arrayToLinkSize) {
 
             this.mask = levelZeroMask;        // 111.. for masking
             this.bitCount = levelOneRotation; //Max no of bits touched
             this.maxRotation = maxPossibleRotation;
+            this.linkToArraySize = linkToArraySize;
+            this.arrayToLinkSize = arrayToLinkSize;
         }
 
         int getLevelZeroMask() {
@@ -301,18 +334,32 @@ abstract class Edge<K, V> extends LinkedNode<K, V> {
             return maxRotation;
         }
 
+        public int getLinkToArraySize() {
+
+            return linkToArraySize;
+        }
+
+        public int getArrayToLinkSize() {
+
+            return arrayToLinkSize;
+        }
+
         int getBaseXValueOnAtLevel(int on, int level) {
 
-            int rotation = getBitCount();
-            int mask = getLevelZeroMask();
+            int rotation = bitCount;
+            int maskTill = mask;
 
+            // May be the below if else works better than the code commented
             if (level > 1) {
                 rotation = (level - 1) * rotation;
-                mask = mask << rotation;
+                maskTill = maskTill << rotation;
             } else {
                 rotation = 0;
             }
-            return (on & mask) >>> rotation;
+
+//            int rotation = (level - 1) * bitCount;
+//            int maskTill = mask << rotation;
+            return (on & maskTill) >>> rotation;
         }
     }
 }
@@ -339,7 +386,7 @@ class LinkedEdge<K, V> extends Edge<K, V> {
             return this.elements;
         }
 
-        int elementCount = bin.cardinality(index + 1);
+        int elementCount = bin.cardinality(index);
         LinkedNode<K, V> element = this.elements;
         for (int i = 1; i < elementCount; i++) {
 
@@ -351,20 +398,28 @@ class LinkedEdge<K, V> extends Edge<K, V> {
     void setElement(int index, LinkedNode<K, V> node) {
 
         bin.set(index);
-        if (this.elements == null) {
+        if (elements == null) {
 
-            this.elements = node;
-            return;
-        }
-        if (index <= bin.nextSetBit(0)) {
-
-            node.setNext(this.elements);
-            this.elements = node;
+            elements = node;
             return;
         }
 
-        int elementCount = bin.cardinality(index);
-        LinkedNode<K, V> element = this.elements;
+        // handle setting lower index before existing set indexes
+        int nextSetBit = bin.nextSetBit(0);
+        if (index <= nextSetBit) {  // change <= to < and uncomment else if
+
+            node.setNext(elements);
+            elements = node;
+            return;
+//        } else if (index == nextSetBit) { // update the existing index
+//
+//            node.setNext(this.elements.getNext());
+//            this.elements = node;
+//            return;
+        }
+
+        int elementCount = bin.cardinality(index - 1);
+        LinkedNode<K, V> element = elements;
         for (int i = 1; i < elementCount; i++) {
 
             element = element.getNext();
@@ -378,7 +433,7 @@ class LinkedEdge<K, V> extends Edge<K, V> {
     @Override
     Edge<K, V> ensureEfficientAccess(Edge<K, V> parent, int hash, int level) {
 
-        if (size() > 11) {
+        if (size() > BASE16.getLinkToArraySize()) {
 
             ArrayEdge<K, V> newEdge = new ArrayEdge<>();
             int itr = -1;
@@ -391,7 +446,7 @@ class LinkedEdge<K, V> extends Edge<K, V> {
             }
             if (parent != null) {
 
-                int parentIndex = Base10ToBaseX.BASE16.getBaseXValueOnAtLevel(hash, level);
+                int parentIndex = BASE16.getBaseXValueOnAtLevel(hash, level);
                 parent.setElement(parentIndex, newEdge);
             }
             newEdge.next = this.next; // This has to be fixed at parent.setElement(parentIndex, newEdge); with index 0
@@ -410,16 +465,16 @@ class LinkedEdge<K, V> extends Edge<K, V> {
 
         bin.clear(index);
         LinkedNode<K, V> result;
-        if (this.elements.next == null || index <= bin.nextSetBit(0)) {
+        if (elements.next == null || index <= bin.nextSetBit(0)) {
 
-            result = this.elements;
-            this.elements = this.elements.next;
+            result = elements;
+            elements = elements.next;
             result.next = null;
             return result;
         }
 
-        int elementCount = bin.cardinality(index);
-        LinkedNode<K, V> element = this.elements;
+        int elementCount = bin.cardinality(index - 1);
+        LinkedNode<K, V> element = elements;
         for (int i = 1; i < elementCount; i++) {
 
             element = element.getNext();
@@ -445,7 +500,6 @@ class LinkedEdge<K, V> extends Edge<K, V> {
 class ArrayEdge<K, V> extends Edge<K, V> {
 
     LinkedNode[] elements; //This is needed to ensure array elements are volatile
-    int size;
 
     public ArrayEdge() {
 
@@ -462,13 +516,12 @@ class ArrayEdge<K, V> extends Edge<K, V> {
     void setElement(int index, LinkedNode<K, V> node) {
 
         elements[index] = node;
-        ++size;
     }
 
     @Override
     Edge<K, V> ensureEfficientAccess(Edge<K, V> parent, int hash, int level) {
 
-        if (size < 8) {
+        if (size() < BASE16.getArrayToLinkSize()) {
 
             LinkedEdge<K, V> newEdge = new LinkedEdge<>();
             for (int i = 0; i < elements.length; i++) {
@@ -478,7 +531,7 @@ class ArrayEdge<K, V> extends Edge<K, V> {
             }
             if (parent != null) {
 
-                int parentIndex = Base10ToBaseX.BASE16.getBaseXValueOnAtLevel(hash, level);
+                int parentIndex = BASE16.getBaseXValueOnAtLevel(hash, level);
                 parent.setElement(parentIndex, newEdge);
             }
             return newEdge;
@@ -489,15 +542,17 @@ class ArrayEdge<K, V> extends Edge<K, V> {
     @Override
     int size() {
 
-        return size;
+        for (int i = 0, size = 0, length = elements.length; ; i++) {
+            if (i >= length) return size;
+            if (elements[i] != null) ++size;
+        }
     }
 
     @Override
     LinkedNode<K, V> removeElement(int index) {
 
-        LinkedNode<K, V> result = (LinkedNode<K, V>) elements[index];
+        LinkedNode<K, V> result = (LinkedNode) elements[index];
         elements[index] = null;
-        --size;
         return result;
     }
 }

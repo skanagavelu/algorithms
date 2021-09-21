@@ -1,5 +1,6 @@
 package trie;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Util {
@@ -18,5 +19,51 @@ public class Util {
         }
         String generatedString = buffer.toString();
         return generatedString;
+    }
+
+    public static class Sequence implements CharSequence {
+
+        char[] arr;
+
+        public Sequence(String seq) {
+            arr = seq.toCharArray();
+        }
+
+        @Override
+        public int length() {
+
+            return arr.length;
+        }
+
+        @Override
+        public char charAt(int index) {
+
+            return arr[index];
+        }
+
+        @Override
+        public CharSequence subSequence(int start, int end) {
+
+            return null;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Sequence sequence = (Sequence) o;
+            return Arrays.equals(arr, sequence.arr);
+        }
+
+        @Override
+        public int hashCode() {
+
+            return Arrays.hashCode(arr);
+        }
     }
 }

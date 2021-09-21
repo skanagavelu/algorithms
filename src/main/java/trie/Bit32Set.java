@@ -47,13 +47,23 @@ public class Bit32Set implements Cloneable, Serializable {
         return cardinality(31);
     }
 
-    public int cardinality(int upto) {
+    /**
+     * @param firstXBits inclusive, starts from 0
+     * @return
+     */
+    public int cardinality(int firstXBits) {
 
-        checkBitIndex(upto);
-        return Integer.bitCount(bin & masks32[upto - 1]);
+        checkBitIndex(firstXBits);
+        return Integer.bitCount(bin & masks32[firstXBits]);
     }
 
-
+    /**
+     * Returns the index of the first bit that is set to true that occurs on or after the specified starting index.
+     * If no such bit exists then -1 is returned.
+     *
+     * @param fromIndex inclusive
+     * @return
+     */
     public int nextSetBit(int fromIndex) {
 
         checkBitIndex(fromIndex);
