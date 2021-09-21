@@ -8,20 +8,25 @@ import java.util.concurrent.ConcurrentHashMap;
 import trie.Util.Sequence;
 import static trie.Util.generateRandomString;
 
-public class TrieMapMemoryConsumption {
+public class TrieMapMemoryConsumptionHashCode {
 
     public static void main(String[] args) {
 
         Set<Sequence> tokens = new HashSet<>();
-        int size = 50000;
+        Set<Integer> hashes = new HashSet<>();
+
+        int size = 1000;
         while (tokens.size() < size) {
 
             Sequence token = new Sequence(generateRandomString());
             tokens.add(token);
+            if (!hashes.add(token.hashCode())) {
+                System.out.println("hashcode already present:" + token);
+            }
         }
 
-//        memoryUsedByHashMap(tokens);
-                memoryUsedByTrieMap(tokens);
+        memoryUsedByHashMap(tokens);
+//                memoryUsedByTrieMap(tokens);
 
         /*
             memoryUsedByHashMap: used 536,128 bytes for size 10000

@@ -450,6 +450,7 @@ class LinkedEdge<K, V> extends Edge<K, V> {
                 parent.setElement(parentIndex, newEdge);
             }
             newEdge.next = this.next; // This has to be fixed at parent.setElement(parentIndex, newEdge); with index 0
+            this.next = null;
             return newEdge;
         }
         return null;
