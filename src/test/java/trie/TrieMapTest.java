@@ -41,7 +41,7 @@ public class TrieMapTest extends TestCase {
         TrieMap<String, String> map = new TrieMap<>();
 
         Set<String> tokens = new HashSet<>();
-        int size = 500;
+        int size = 50000;
         while (tokens.size() < size) {
 
             String token = generateRandomString();

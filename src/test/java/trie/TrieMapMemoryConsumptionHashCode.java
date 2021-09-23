@@ -20,13 +20,16 @@ public class TrieMapMemoryConsumptionHashCode {
 
             Sequence token = new Sequence(generateRandomString());
             tokens.add(token);
-            if (!hashes.add(token.hashCode())) {
+            if (hashes.contains(token.hashCode())) {
                 System.out.println("hashcode already present:" + token);
+            } else {
+                hashes.add(token.hashCode());
             }
         }
 
-        memoryUsedByHashMap(tokens);
-//                memoryUsedByTrieMap(tokens);
+//        memoryUsedByHashMap(tokens);
+                memoryUsedByTrieMap(tokens);
+
 
         /*
             memoryUsedByHashMap: used 536,128 bytes for size 10000
@@ -42,12 +45,18 @@ public class TrieMapMemoryConsumptionHashCode {
 
     public static void memoryUsedByTrieMap(Set<Sequence> tokens) {
 
+        System.out.println("\n\n\n\n\n\n");
         System.gc();
+        Set<Integer> hashes = new HashSet<>();
         Map<Sequence, Sequence> trieMap = new TrieMap<>();
         long before = memoryUsed();
         for (Sequence token : tokens) {
 
+            if (!hashes.add(token.hashCode())) {
+                System.out.println("hashcode already present:" + token);
+            }
             trieMap.put(token, token);
+            trieMap.get(token);
         }
 
         System.gc();

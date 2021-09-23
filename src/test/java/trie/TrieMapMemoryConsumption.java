@@ -13,25 +13,19 @@ public class TrieMapMemoryConsumption {
     public static void main(String[] args) {
 
         Set<Sequence> tokens = new HashSet<>();
-        int size = 100000;
+        int size = 50000;
         while (tokens.size() < size) {
 
             Sequence token = new Sequence(generateRandomString());
             tokens.add(token);
         }
 
-        memoryUsedByHashMap(tokens);
-//                memoryUsedByTrieMap(tokens);
+//        memoryUsedByHashMap(tokens);
+                memoryUsedByTrieMap(tokens);
 
         /*
-            memoryUsedByHashMap: used 536,128 bytes for size 10000
-            memoryUsedByTrieMap: used 1,008,728 bytes for size 10000
-
-
-            memoryUsedByTrieMap: used 505,392 bytes for size 10000
-
-            memoryUsedByHashMap: used 3,649,080 bytes for size 50000
-            memoryUsedByTrieMap: used 2,097,136 bytes for size 50000
+            memoryUsedByHashMap: used 2,451,968 bytes for size 50000
+            memoryUsedByTrieMap: used 1,981,032 bytes for size 50000
          */
     }
 
