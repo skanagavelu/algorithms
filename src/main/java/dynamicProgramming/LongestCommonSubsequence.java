@@ -68,8 +68,6 @@ public class LongestCommonSubsequence {
 			}
 //			System.out.println("     : i="+i+"  j="+j);
 		}
-		
-		
 		return null;
 	}
 }

@@ -4,6 +4,8 @@
 //import java.util.Random;
 //import java.util.concurrent.ConcurrentHashMap;
 //
+//import trie.Edge.Base10ToBaseX;
+//
 //public class TrieMapValidationTest {
 //
 //    public static final int SIZE = 100000;
@@ -29,7 +31,7 @@
 //            String key = randomInt+"2";
 //            m.put(key, key);
 //        }
-//        Base10ToBaseX.Base[] bases = {Base10ToBaseX.Base.Base65536, Base10ToBaseX.Base.BASE8, Base10ToBaseX.Base.BASE8, Base10ToBaseX.Base.BASE4, Base10ToBaseX.Base.BASE4, Base10ToBaseX.Base.BASE4, Base10ToBaseX.Base.BASE4, Base10ToBaseX.Base.BASE2, Base10ToBaseX.Base.BASE2};
+//        Base10ToBaseX.Base[] bases = { Base10ToBaseX.Base.Base65536, Base10ToBaseX.Base.BASE8, Base10ToBaseX.Base.BASE8, Base10ToBaseX.Base.BASE4, Base10ToBaseX.Base.BASE4, Base10ToBaseX.Base.BASE4, Base10ToBaseX.Base.BASE4, Base10ToBaseX.Base.BASE2, Base10ToBaseX.Base.BASE2};
 //        Edge.base = new VariantBases(bases);
 //        Edge.MAX_TREE_LEVEL = 1;
 //        TrieMap<String, String> map = new TrieMap();

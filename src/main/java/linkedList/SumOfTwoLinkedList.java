@@ -20,7 +20,6 @@ package linkedList;
  *  
  * 
  * @author ksugumar
- *
  */
 public class SumOfTwoLinkedList {
 	public static void main(String[] args) {

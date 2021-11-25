@@ -23,7 +23,7 @@ public class MinimumEditDistance {
     public static int[][] buildEditDistanceMatrix(char[] source, char[] target) {
 
 
-        //Has additional +1 on editDistMatrix length so we can use source/target.length on editDistMatrix.
+        //Has additional +1 on editDistMatrix length, so we can use source/target.length on editDistMatrix.
         //But careful add "-1" while calling source/target
         int[][] editDistMatrix = new int[target.length + 1] [source.length + 1];
 

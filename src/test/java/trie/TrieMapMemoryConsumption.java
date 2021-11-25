@@ -13,15 +13,15 @@ public class TrieMapMemoryConsumption {
     public static void main(String[] args) {
 
         Set<Sequence> tokens = new HashSet<>();
-        int size = 50000;
+        int size = 60000;
         while (tokens.size() < size) {
 
             Sequence token = new Sequence(generateRandomString());
             tokens.add(token);
         }
 
-//        memoryUsedByHashMap(tokens);
-                memoryUsedByTrieMap(tokens);
+        memoryUsedByHashMap(tokens);
+//                memoryUsedByTrieMap(tokens);
 
         /*
             memoryUsedByHashMap: used 2,451,968 bytes for size 50000
@@ -46,7 +46,7 @@ public class TrieMapMemoryConsumption {
             throw new AssertionError("You need to run this with -XX:-UseTLAB for accurate accounting");
         }
         System.out.printf("memoryUsedByTrieMap: used %,d bytes for size %d %n", used, tokens.size());
-
+        //      memoryUsedByTrieMap: used 2,026,224 bytes for size 50000
         //        System.out.println(ClassLayout.parseInstance(trieMap).toPrintable());
     }
 

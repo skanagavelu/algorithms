@@ -17,10 +17,13 @@ public class NumberOfIslands {
                             {  0, 0, 0, 0, 0, 0, 1  }
                         };
         System.out.println("Before");
-        for (int[] row : pixels) {
-            System.out.println(Arrays.toString(row));
-        }
 
+//        deepToString is sufficient
+//        for (int[] row : pixels) {
+//            System.out.println(Arrays.toString(row));
+//        }
+
+        System.out.println(Arrays.deepToString(pixels).replace("],", "],\n"));
         Point startAt = new Point(1, 1);
         int from = pixels[1][1];
         System.out.println("getTotalNumberOfIslands; "+  getTotalNumberOfIslands(pixels));

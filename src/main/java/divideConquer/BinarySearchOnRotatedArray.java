@@ -40,6 +40,7 @@ public class BinarySearchOnRotatedArray {
             }
 
             // the first half is sorted
+            //for two elements, both mid and low is same value of index one; so we need equality check with low
             if (array[low] <= array[mid]) {
                 if (array[low] <= key && key < array[mid])  // key is in sorted range
                     high = mid - 1;

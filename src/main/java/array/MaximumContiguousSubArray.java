@@ -1,6 +1,13 @@
 package array;
 
-
+/**
+ * https://www.youtube.com/watch?v=5WZl3MMT0Eg
+ * https://leetcode.com/problems/maximum-subarray/
+ *
+ * Forward Sliding window problem,
+ * where left pointer will move only when the sum is negative
+ * right pointer move ahead one by one, and stored when maximum is large so far.
+ */
 public class MaximumContiguousSubArray {
 	public static void main(String[] args) {
 //      int[] array = {1,-2,-5,55,56,-11,58,-13};
@@ -45,9 +52,7 @@ public class MaximumContiguousSubArray {
       }
       System.out.println("Start/End/Sum : " + start + "/" + end + "/" + sum);
 	}
-	
-	
-	
+
 //	int maxSubArraySum(int a[], int size) 
 //	{ 
 //	    int max_so_far = INT_MIN, max_ending_here = 0; 

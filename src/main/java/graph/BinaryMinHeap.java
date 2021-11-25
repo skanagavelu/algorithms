@@ -1,14 +1,13 @@
 package graph;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 public class BinaryMinHeap<T extends Comparable<T>> {
 
     List<T> nodes = new ArrayList<>();
-
+//    LinkedList
 
     public void add(int weight, T node) {
         nodes.add(node);
@@ -100,7 +99,6 @@ public class BinaryMinHeap<T extends Comparable<T>> {
  
     public boolean containsData(T key){return false;}
 
-
     /**
      * Get the heap min without extracting the key
      */
@@ -130,10 +128,7 @@ public class BinaryMinHeap<T extends Comparable<T>> {
      */
 //    public Node extractMinNode(){return null;};
 
-
-
     private void printPositionMap() {}
-
 
     private void updatePositionMap(T data1, T data2, int pos1, int pos2) {}
 
@@ -155,7 +150,6 @@ public class BinaryMinHeap<T extends Comparable<T>> {
         System.out.println(heap.extractMin());
         System.out.println(heap.extractMin());
         System.out.println(heap.extractMin());
-
 
         //        heap.decrease("Pramila", 1);
         heap.printHeap();

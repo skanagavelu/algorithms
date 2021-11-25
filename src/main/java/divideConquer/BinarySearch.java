@@ -53,7 +53,6 @@ public class BinarySearch {
 		return -(low);              // key not found; till which direction with index
 	}
 
-
 	/* can not use ternary when equal needs return and other cases are void.
 	  midVal.compareTo(key) < low = mid + 1 : a : a.compareTo(b) > 0 ? b : 0
 

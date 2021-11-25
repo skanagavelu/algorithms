@@ -61,7 +61,6 @@ public class TwoWordsAreAnagram {
 //	}
 
 	
-	
 //	by jb.
 //	If you sort either array, the solution becomes O(n log n). but if you use a hashmap, it's O(n). tested and working.
 //	char[] word1 = "test".toCharArray();

@@ -9,6 +9,9 @@ import java.util.Set;
 /**
  * https://fizzbuzzed.com/top-interview-questions-1/
  * https://www.geeksforgeeks.org/find-triplets-array-whose-sum-equal-zero/
+ *
+ * https://leetcode.com/problems/two-sum/solution/ with hashmap to check the complement (complement = target - nums[i])
+ * also thee hashTable contains index to check we are not working on the same index.
  */
 public class ThreeSum {
 
@@ -31,7 +34,7 @@ public class ThreeSum {
         Set<List<Integer>> result = new HashSet<>(4);
 
         /*
-         * The way to find two sum in n^2 time after sorting
+         * The way to find three sum in n^2 time after sorting
          * O(n * log n) for sorting + O(n^2) time for iteration
          * so total complexity is O(n^2)
          */
@@ -41,6 +44,12 @@ public class ThreeSum {
              * The way to find two sum in n * log n time after sorting
              * O(n * log n) for sorting + O(n) time for iteration
              * so total complexity is O(n * log n)
+             *
+             * two pointer solution, the array must first be sorted,
+             * then we can use the sorted structure to cut down the number of comparisons we do.
+             * The idea is
+             * [X, X, X, X, X]
+             * A[]
              */
             for (int j = i + 1, k = nums.length -1; j < k;) {
 
@@ -53,7 +62,7 @@ public class ThreeSum {
                     j++;
                 } else if (nums[i] + nums[j] + nums[k] < sum) {
 
-                    while (j < nums.length - 1 && nums[j] == nums[j+1]) { j++; }
+                    while (j < nums.length - 1 && nums[j] == nums[j+1]) { j++; } //For duplicate
                     j++;
                 } else {
 

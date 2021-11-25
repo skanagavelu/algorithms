@@ -31,7 +31,7 @@ public class IsBST<T extends Comparable<T>> {
 		BTDisplay.printTreeNode(root);
 		System.out.println(isBST(root));
 		System.out.println(new IsBST().inOrderBSTCheck(root));
-		System.out.println(new IsBST().isBSTRecursive(root, new Integer(Integer.MIN_VALUE), new Integer(Integer.MAX_VALUE) ));
+		System.out.println(new IsBST().isBSTRecursive(root, new Integer(Integer.MIN_VALUE), Integer.valueOf(Integer.MAX_VALUE) ));
 	}
 	
 	

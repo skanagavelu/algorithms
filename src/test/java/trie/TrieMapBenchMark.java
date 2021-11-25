@@ -34,49 +34,49 @@ public class TrieMapBenchMark {
                                               .measurementIterations(3)
                                               .measurementTime(TimeValue.seconds(4))
                                               .mode(Mode.AverageTime)
-                                              .timeUnit(NANOSECONDS)
+                                              .timeUnit(MICROSECONDS)
                                               .build();
         new Runner(options).run();
     }
 
 
-//    @Benchmark
-//    public void insert1000Trie(BenchmarkState1000Insert state, Blackhole blackhole) {
-//
-//        for(Sequence token: state.tokens) {
-//
-//            state.trieMap.put(token, token);
-//        }
-//        blackhole.consume(state.trieMap);
-//    }
-//
-//    @Benchmark
-//    public void insert1000Map(BenchmarkState1000Insert state, Blackhole blackhole) {
-//
-//        for(Sequence token: state.tokens) {
-//
-//            state.hashMap.put(token, token);
-//        }
-//        blackhole.consume(state.hashMap);
-//    }
-//
-//    @Benchmark
-//    public void read1000Trie(BenchmarkState1000Read state, Blackhole blackhole) {
-//
-//        for(Sequence token: state.tokens) {
-//
-//            blackhole.consume(state.trieMap.get(token));
-//        }
-//    }
-//
-//    @Benchmark
-//    public void read1000Map(BenchmarkState1000Read state, Blackhole blackhole) {
-//
-//        for(Sequence token: state.tokens) {
-//
-//            blackhole.consume(state.hashMap.get(token));
-//        }
-//    }
+    @Benchmark
+    public void insert1000Trie(BenchmarkState1000Insert state, Blackhole blackhole) {
+
+        for(Sequence token: state.tokens) {
+
+            state.trieMap.put(token, token);
+        }
+        blackhole.consume(state.trieMap);
+    }
+
+    @Benchmark
+    public void insert1000Map(BenchmarkState1000Insert state, Blackhole blackhole) {
+
+        for(Sequence token: state.tokens) {
+
+            state.hashMap.put(token, token);
+        }
+        blackhole.consume(state.hashMap);
+    }
+
+    @Benchmark
+    public void read1000Trie(BenchmarkState1000Read state, Blackhole blackhole) {
+
+        for(Sequence token: state.tokens) {
+
+            blackhole.consume(state.trieMap.get(token));
+        }
+    }
+
+    @Benchmark
+    public void read1000Map(BenchmarkState1000Read state, Blackhole blackhole) {
+
+        for(Sequence token: state.tokens) {
+
+            blackhole.consume(state.hashMap.get(token));
+        }
+    }
 
     @Benchmark
     public void read1Trie(BenchmarkState1Read state, Blackhole blackhole) {
@@ -91,43 +91,43 @@ public class TrieMapBenchMark {
         blackhole.consume(state.hashMap.get(state.token));
     }
 
-//    @Benchmark
-//    public void insert100000Trie(BenchmarkState100000Insert state, Blackhole blackhole) {
-//
-//        for(Sequence token: state.tokens) {
-//
-//            state.trieMap.put(token, token);
-//        }
-//        blackhole.consume(state.trieMap);
-//    }
-//
-//    @Benchmark
-//    public void insert100000Map(BenchmarkState100000Insert state, Blackhole blackhole) {
-//
-//        for(Sequence token: state.tokens) {
-//
-//            state.hashMap.put(token, token);
-//        }
-//        blackhole.consume(state.hashMap);
-//    }
-//
-//    @Benchmark
-//    public void read100000Trie(BenchmarkState100000Read state, Blackhole blackhole) {
-//
-//        for(Sequence token: state.tokens) {
-//
-//            blackhole.consume(state.trieMap.get(token));
-//        }
-//    }
-//
-//    @Benchmark
-//    public void read100000Map(BenchmarkState100000Read state, Blackhole blackhole) {
-//
-//        for(Sequence token: state.tokens) {
-//
-//            blackhole.consume(state.hashMap.get(token));
-//        }
-//    }
+    @Benchmark
+    public void insert100000Trie(BenchmarkState100000Insert state, Blackhole blackhole) {
+
+        for(Sequence token: state.tokens) {
+
+            state.trieMap.put(token, token);
+        }
+        blackhole.consume(state.trieMap);
+    }
+
+    @Benchmark
+    public void insert100000Map(BenchmarkState100000Insert state, Blackhole blackhole) {
+
+        for(Sequence token: state.tokens) {
+
+            state.hashMap.put(token, token);
+        }
+        blackhole.consume(state.hashMap);
+    }
+
+    @Benchmark
+    public void read100000Trie(BenchmarkState100000Read state, Blackhole blackhole) {
+
+        for(Sequence token: state.tokens) {
+
+            blackhole.consume(state.trieMap.get(token));
+        }
+    }
+
+    @Benchmark
+    public void read100000Map(BenchmarkState100000Read state, Blackhole blackhole) {
+
+        for(Sequence token: state.tokens) {
+
+            blackhole.consume(state.hashMap.get(token));
+        }
+    }
 
     @State(Scope.Benchmark)
     public static class BenchmarkState1000Insert {

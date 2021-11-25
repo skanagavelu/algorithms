@@ -62,6 +62,12 @@ public class QuickSort {
 		
 	}
 
+	/**
+	 * Quicksort is a divide-and-conquer algorithm.
+	 * It works by selecting a 'pivot' element from the array and
+	 * partitioning the other elements into two sub-arrays,
+	 * according to whether they are less than or greater than the pivot.
+	 */
 	private static void quickSort(int[] array, int p, int r) {
 		//Handling array of size two
 		if( p == r-1) {

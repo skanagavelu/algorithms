@@ -37,13 +37,13 @@ public class LongestUniqueCharSubString {
 			if (list.contains(current)) {
 				result = Math.max(result, list.size());
 				for (;;) {
-					char c = list.pollLast();
+					char c = list.pollFirst();
 					if (c == current) {
 						break;
 					}
 				}
 			}
-			list.offerFirst(current);
+			list.offerLast(current);
 		}
 		result = Math.max(result, list.size());
 		return result;

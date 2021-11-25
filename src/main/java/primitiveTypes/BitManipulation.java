@@ -3,7 +3,6 @@ package primitiveTypes;
 public class BitManipulation {
 	public static void main(String[] args) {
 		
-		
 		int value = 1;
 		int i = 15;
 		System.out.println("Example on multiplying the value by 2: " + value); 
@@ -149,7 +148,6 @@ public class BitManipulation {
 		//x << 1
 		//Add an 1 to the end of a number
 		//x << 1 + 1
-
 		
 		
 		/*

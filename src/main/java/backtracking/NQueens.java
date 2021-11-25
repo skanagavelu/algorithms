@@ -67,7 +67,6 @@ public class NQueens {
         Arrays.stream(positions).forEach(column -> System.out.println(column));
     }
 
-
     /*         0    1    2    3
            0   q1   -    -    q
            1   -    -    -    q2

@@ -58,33 +58,18 @@ public class GroupAnagrams {
         }
 
         @Override
-        public int hashCode() {
-
-            return Arrays.hashCode(this.anagram);
-        }
+        public int hashCode() { return Arrays.hashCode(this.anagram);}
 
         @Override
-        public int length() {
-
-            return anagram.length;
-        }
+        public int length() {return anagram.length;}
 
         @Override
-        public char charAt(int index) {
-
-            return anagram[index];
-        }
+        public char charAt(int index) {return anagram[index];}
 
         @Override
-        public CharSequence subSequence(int start, int end) {
-
-            return new String(anagram).subSequence(start, end);
-        }
+        public CharSequence subSequence(int start, int end) {return new String(anagram).subSequence(start, end);}
 
         @Override
-        public String toString() {
-
-            return Arrays.toString(anagram);
-        }
+        public String toString() {return Arrays.toString(anagram);}
     }
 }

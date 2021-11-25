@@ -91,8 +91,5 @@ public class QueueUsingCircularArray <T> {
 		ca.add(8);
 		ca.add(9);
 		ca.add(10);
-		
-		
 	}
-
 }

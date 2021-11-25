@@ -67,10 +67,10 @@ public class RectangleIntersect {
 	
 	//1) Check anyone point of one rectangle is within another rectangle.
 	private static boolean checkGivenPointIsInsideRectangle(Point X1, Point Y1, Point X2) { 
-		if(X1.x < X2.x && X1.y < X2.y && Y1.x > X2.x && Y1.y > X2.y) {
-			return true;
-		}
-		return false;
+		return X1.x < X2.x &&
+			   X1.y < X2.y &&
+			   Y1.x > X2.x &&
+			   Y1.y > X2.y;
 	}
 	
 	
@@ -88,7 +88,6 @@ public class RectangleIntersect {
 		return true;
 	}
 }
-
 
 
 class Point {

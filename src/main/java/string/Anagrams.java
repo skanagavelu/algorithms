@@ -1,6 +1,7 @@
 package string;
 
 import java.lang.reflect.Array;
+import java.util.Arrays;
 
 /*
  * An anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
@@ -10,7 +11,7 @@ import java.lang.reflect.Array;
 public class Anagrams {
 	public static void main(String[] args) {
 		int k = 3;
-		printAnagrams("ABC".toCharArray(), k);
+		printAnagrams("ABCD".toCharArray(), k);
 	}
 
 	public static void printAnagrams(char[] set, int anagramLength) {
@@ -51,13 +52,12 @@ public class Anagrams {
 		}
 	}
 
-
+//  Arrays.copyOfRange(source, 0, removedIdx) wont work as there is specific index to be removed
 	public static char[] removeElement(char[] source, int removedIdx) {
 
 		char[] target = new char[source.length - 1];
 		System.arraycopy(source, 0, target, 0, removedIdx); //copy up to removedIdx
-		// -1 as there is one element short in the target
-		System.arraycopy(source, removedIdx + 1, target, removedIdx, source.length - removedIdx - 1);// copy after removedIdx but one less
+		System.arraycopy(source, removedIdx + 1, target, removedIdx, target.length - removedIdx);// copy after removedIdx
 		return target;
 	}
 

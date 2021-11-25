@@ -218,6 +218,4 @@ public class NextPalindromeForGivenNumber {
 	private static int getADigit(int number, int atPosition) {
 		return (number >> (atPosition-1)) & 1;
 	}
-	
-
 }

@@ -31,8 +31,6 @@ public class TopologicalSort {
         TopologicalSort g = new TopologicalSort();
         System.out.println(g.doTopologicalSort(graph));
  	}
-
-    
     
     /**
      * Note that DFS needs two methods, one is recursive.

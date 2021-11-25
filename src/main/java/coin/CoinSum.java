@@ -18,7 +18,6 @@ public class CoinSum {
         int[] coins = {25, 10, 5, 1};
         int sum = 40;
 
-
 //        coinSumPermutation(coins, sum, new ArrayList<>());
 //        for (List<Integer> pathSum : permutaion) {
 //            for (Integer coin : pathSum) {
@@ -26,7 +25,6 @@ public class CoinSum {
 //            }
 //            System.out.println();
 //        }
-
 
         coinSumCombination(coins, sum, new HashMap<>());
         for (Map<Integer, Integer> pathSum : combinations) {
@@ -56,7 +54,6 @@ public class CoinSum {
             if (coin > sum) {
                 continue;
             }
-
             pathSum.add(coin);
             coinSumPermutation(coins, sum - coin, pathSum);
             pathSum.remove(pathSum.size() - 1);
