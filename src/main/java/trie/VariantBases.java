@@ -1,5 +1,7 @@
 package trie;
 
+import java.util.HashMap;
+
 public class VariantBases {
 
     Base10ToBaseX.Base[] bases = null;

@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import static java.util.concurrent.TimeUnit.MICROSECONDS;
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
 
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Mode;
@@ -33,7 +34,7 @@ public class TrieMapBenchMark {
                                               .measurementIterations(3)
                                               .measurementTime(TimeValue.seconds(4))
                                               .mode(Mode.AverageTime)
-                                              .timeUnit(MICROSECONDS)
+                                              .timeUnit(NANOSECONDS)
                                               .build();
         new Runner(options).run();
     }
@@ -58,23 +59,36 @@ public class TrieMapBenchMark {
 //        }
 //        blackhole.consume(state.hashMap);
 //    }
+//
+//    @Benchmark
+//    public void read1000Trie(BenchmarkState1000Read state, Blackhole blackhole) {
+//
+//        for(Sequence token: state.tokens) {
+//
+//            blackhole.consume(state.trieMap.get(token));
+//        }
+//    }
+//
+//    @Benchmark
+//    public void read1000Map(BenchmarkState1000Read state, Blackhole blackhole) {
+//
+//        for(Sequence token: state.tokens) {
+//
+//            blackhole.consume(state.hashMap.get(token));
+//        }
+//    }
 
     @Benchmark
-    public void read1000Trie(BenchmarkState1000Read state, Blackhole blackhole) {
+    public void read1Trie(BenchmarkState1Read state, Blackhole blackhole) {
 
-        for(Sequence token: state.tokens) {
 
-            blackhole.consume(state.trieMap.get(token));
-        }
+        blackhole.consume(state.trieMap.get(state.token));
     }
 
     @Benchmark
-    public void read1000Map(BenchmarkState1000Read state, Blackhole blackhole) {
+    public void read1Map(BenchmarkState1Read state, Blackhole blackhole) {
 
-        for(Sequence token: state.tokens) {
-
-            blackhole.consume(state.hashMap.get(token));
-        }
+        blackhole.consume(state.hashMap.get(state.token));
     }
 
 //    @Benchmark
@@ -96,24 +110,24 @@ public class TrieMapBenchMark {
 //        }
 //        blackhole.consume(state.hashMap);
 //    }
-
-    @Benchmark
-    public void read100000Trie(BenchmarkState100000Read state, Blackhole blackhole) {
-
-        for(Sequence token: state.tokens) {
-
-            blackhole.consume(state.trieMap.get(token));
-        }
-    }
-
-    @Benchmark
-    public void read100000Map(BenchmarkState100000Read state, Blackhole blackhole) {
-
-        for(Sequence token: state.tokens) {
-
-            blackhole.consume(state.hashMap.get(token));
-        }
-    }
+//
+//    @Benchmark
+//    public void read100000Trie(BenchmarkState100000Read state, Blackhole blackhole) {
+//
+//        for(Sequence token: state.tokens) {
+//
+//            blackhole.consume(state.trieMap.get(token));
+//        }
+//    }
+//
+//    @Benchmark
+//    public void read100000Map(BenchmarkState100000Read state, Blackhole blackhole) {
+//
+//        for(Sequence token: state.tokens) {
+//
+//            blackhole.consume(state.hashMap.get(token));
+//        }
+//    }
 
     @State(Scope.Benchmark)
     public static class BenchmarkState1000Insert {
@@ -169,6 +183,31 @@ public class TrieMapBenchMark {
 
                 Sequence token = new Sequence(generateRandomString());
                 tokens.add(token);
+                trieMap.put(token, token);
+                hashMap.put(token, token);
+            }
+        }
+    }
+
+    @State(Scope.Benchmark)
+    public static class BenchmarkState1Read {
+
+        TrieMap<Sequence, Sequence> trieMap;
+        Map<Sequence, Sequence> hashMap;
+        Set<Sequence> tokens;
+        Sequence token;
+
+        @Setup
+        public void setup() {
+
+            trieMap = new TrieMap<>();
+            hashMap = new ConcurrentHashMap<>();
+            tokens = new HashSet<>();
+            for(int i = 0 ; i < 1000; i++) {
+
+                Sequence token = new Sequence(generateRandomString());
+                tokens.add(token);
+                this.token = token;
                 trieMap.put(token, token);
                 hashMap.put(token, token);
             }

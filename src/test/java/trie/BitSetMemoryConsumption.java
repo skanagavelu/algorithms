@@ -20,6 +20,7 @@ public class BitSetMemoryConsumption {
         /*
             memoryUsedByHashMap: used 3,154,512 bytes for size 50000
             memoryUsedByTrieMap: used 1,341,936 bytes for size 50000
+            1182 KB
 
             memoryUsedByTrieMap: used 514,160 bytes for size 20000
             memoryUsedByHashMap: used 1,057,360 bytes for size 20000

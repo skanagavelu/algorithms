@@ -26,6 +26,7 @@ public class TrieMapMemoryConsumption {
         /*
             memoryUsedByHashMap: used 2,451,968 bytes for size 50000
             memoryUsedByTrieMap: used 1,981,032 bytes for size 50000
+            470.935 KB
          */
     }
 

@@ -59,7 +59,7 @@ public class TrieMap<K, V> implements Map<K, V> {
     @Override
     public V remove(Object key) {
 
-        return null;
+        return baseEdge.remove(key);
     }
 
     @Override
@@ -143,18 +143,19 @@ abstract class Edge<K, V> implements Node<K, V> {
     V get(Object key) {
 
         int hash = key.hashCode();
-        Node<K, V> nodeAtIndex = this;
+        Node<K, V> node = this;
         int level = 0;
+
         //Iterate till maximum levels
         while(true) {
 
-            nodeAtIndex = ((Edge<K, V>) nodeAtIndex).getElement(BASE16.getBaseXValueOnAtLevel(hash, ++level));
-            if (nodeAtIndex == null) {
+            node = ((Edge<K, V>) node).getElement(BASE16.getBaseXValueAtLevel(hash, ++level));
+            if (node == null) {
 
                 return null;
-            } else if (nodeAtIndex instanceof Vertex) {
+            } else if (node instanceof Vertex) {
 
-                Vertex<K, V> vertex = (Vertex<K, V>) nodeAtIndex;
+                Vertex<K, V> vertex = (Vertex<K, V>) node;
                 for (; vertex != null; vertex = vertex.next) {
                     // vertex.hashCode() == hash is never needed as there is no collision of two different hashes
                     // shares same array index. and vertex.hashCode() == hash is always true.
@@ -176,7 +177,7 @@ abstract class Edge<K, V> implements Node<K, V> {
         //Iterate till maximum levels
         while(true) {
 
-            int index = BASE16.getBaseXValueOnAtLevel(hash, ++level);
+            int index = BASE16.getBaseXValueAtLevel(hash, ++level);
             nodeAtIndex = edgeAtLevel.getElement(index);
             if (nodeAtIndex == null) {
 
@@ -207,8 +208,8 @@ abstract class Edge<K, V> implements Node<K, V> {
                 edgeAtLevel = newEdge;
 
                 level = level + 1;
-                int newIndex = BASE16.getBaseXValueOnAtLevel(hash, level);
-                int vertexIndex = BASE16.getBaseXValueOnAtLevel(vertexAtIndexHash, level);
+                int newIndex = BASE16.getBaseXValueAtLevel(hash, level);
+                int vertexIndex = BASE16.getBaseXValueAtLevel(vertexAtIndexHash, level);
                 while (vertexIndex == newIndex) {
 
                     newEdge = new PartialArrayEdge<>();
@@ -216,8 +217,8 @@ abstract class Edge<K, V> implements Node<K, V> {
                     edgeAtLevel = newEdge;
 
                     level = level + 1;
-                    newIndex = BASE16.getBaseXValueOnAtLevel(hash, level); //newVertex.key.hashCode()
-                    vertexIndex = BASE16.getBaseXValueOnAtLevel(vertexAtIndexHash, level);
+                    newIndex = BASE16.getBaseXValueAtLevel(hash, level); //newVertex.key.hashCode()
+                    vertexIndex = BASE16.getBaseXValueAtLevel(vertexAtIndexHash, level);
                 }
 
                 edgeAtLevel.setElement(newIndex, new Vertex<>(key, value));
@@ -228,6 +229,11 @@ abstract class Edge<K, V> implements Node<K, V> {
                 edgeAtLevel = (Edge<K, V>) nodeAtIndex;
             }
         }
+    }
+
+    V remove(K key) {
+
+      return null;
     }
 
     protected static enum Base10ToBaseX {
@@ -260,7 +266,7 @@ abstract class Edge<K, V> implements Node<K, V> {
             return maxRotation;
         }
 
-        int getBaseXValueOnAtLevel(int on, int level) {
+        int getBaseXValueAtLevel(int on, int level) {
 
             int rotation = bitCount;
             int maskTill = mask;
@@ -280,19 +286,19 @@ abstract class Edge<K, V> implements Node<K, V> {
 class PartialArrayEdge<K, V> extends Edge<K, V> {
 
     int bitset;
-    Node[] elements;
+    Node<K, V>[] elements;
 
     @Override
     Node<K, V> getElement(int index) {
 
         if (elements != null) {
 
+            if (elements.length == 16) return elements[index];
+
             if (!bitAt(bitset, index)) {
                 // Not set
                 return null;
             }
-
-            if (elements.length == 16) return elements[index];
             return elements[elementCount(bitset, index) - 1];
         }
 
@@ -340,11 +346,12 @@ class PartialArrayEdge<K, V> extends Edge<K, V> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     Node<K, V> removeElement(int index) {
 
         if (elements.length == 1) {
 
-            Node<K, V> result = (Node) elements[0];
+            Node<K, V> result = (Node<K, V>) elements[0];
             elements = null;
             clearBitAt(index);
             return result;
@@ -352,8 +359,8 @@ class PartialArrayEdge<K, V> extends Edge<K, V> {
 
         // elementCount cannot be less than 1, since index is referring existing element
         int elementCount = elementCount(bitset, index);
-        Node<K, V> result = (Node) elements[elementCount - 1];
-        Node[] newElements = new Node[elements.length - 1];
+        Node<K, V> result = (Node<K, V>) elements[elementCount - 1];
+        Node<K, V>[] newElements = new Node[elements.length - 1];
         System.arraycopy(elements, 0, newElements, 0, elementCount - 1);
         if (elements.length > elementCount) {
 
