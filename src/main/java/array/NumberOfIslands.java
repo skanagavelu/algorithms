@@ -9,7 +9,10 @@ import java.util.List;
  */
 public class NumberOfIslands {
 
+    record Point(int row, int col) {}
+
     public static void main(String[] args) {
+
         int[][] pixels = {
                             {  1, 1, 0, 0, 1, 0, 0  },
                             {  1, 1, 0, 0, 1, 1, 1  },
@@ -90,17 +93,5 @@ public class NumberOfIslands {
         }
 
         return neighbours;
-    }
-
-
-    private static class Point {
-        int row;
-        int col;
-
-        public Point(int row, int col) {
-
-            this.row = row;
-            this.col = col;
-        }
     }
 }

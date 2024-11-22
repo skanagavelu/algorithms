@@ -25,30 +25,28 @@ public class MatrixSpiralPrint {
 		                  {25, 26, 27, 28, 100},
 		                  {29, 30, 31, 32, 110},
 		                  {33, 34, 35, 36, 120}};
-                          
-		
+
+
 //		int[][] m = {{1,  2,  3,  4 },
 //		             {5,  6,  7,  8 },
 //		             {9,  10, 11, 12},
 //		             {13, 14, 15, 16},
 //		             {23, 24, 25, 26}};
-		
+
 //		int[][] m = {{1,  2,  3,  4 },
 //	                 {5,  6,  7,  8 },
 //	                 {9,  10, 11, 12},
 //	                 {13, 14, 15, 16}};
-	             
-		
 
-		for (int i=0; i< m.length; i++) {
-			int[] row = m[i];
-			for (int j=0; j<row.length; j++) {
-				System.out.print(m[i][j]+"  ");
-			}
-			System.out.println();
-		}
+
+        for (int[] row : m) {
+            for (int i : row) {
+                System.out.print(i + "  ");
+            }
+            System.out.println();
+        }
 		System.out.println("------------------\n");
-		
+
 		printSpiralSolution2(m);
 	}	
 	

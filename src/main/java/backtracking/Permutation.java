@@ -14,8 +14,8 @@ public class Permutation {
 //        List<Character> input = new ArrayList<Character>(new Character[]{'1', '2', '3', '4'});
 //        List<Character> input1 = new ArrayList<>(Arrays.<Character>asList(new char[]{ '1', '2', '3', '4'}));
         List<Character> input2 =
-                new ArrayList<Character>(Arrays.<Character>asList(new Character[]{'1', '2', '3', '4'}));
-        permutations(4, input, new ArrayList<>());
+                new ArrayList<Character>(Arrays.asList('1', '2', '3', '4'));
+        permutations(3, input, new ArrayList<>());
     }
 
 

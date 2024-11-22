@@ -1,11 +1,13 @@
 package trie;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.BitSet;
 
-import junit.framework.TestCase;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Bit32SetTest extends TestCase {
+
+public class Bit32SetTest {
 
     @Test
     public void testValidateSetAndGet() {

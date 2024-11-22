@@ -1,11 +1,10 @@
 package array;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class PixelColourChange {
 
+    record Point(int row, int col) {}
     public static void main(String[] args) {
         int[][] pixels = {
                             {  1, 2, 2, 3, 5, 5, 6  },
@@ -32,15 +31,17 @@ public class PixelColourChange {
 
     private static void performColourChange(int[][] pixels, Point startAt, int fromColour, int toColour) {
 
-        int currentColour = pixels[startAt.row][startAt.col];
-        if (currentColour != fromColour  || currentColour == toColour) {
-            return;
-        }
-
-        pixels[startAt.row][startAt.col] = toColour;
-        List<Point> neighbours = getNeighbours(pixels, startAt);
-        for (Point neighbour : neighbours) {
-            performColourChange(pixels, neighbour, fromColour, toColour);
+        Queue<Point> neighbours = new LinkedList<>();
+        neighbours.offer(startAt);
+        while (!neighbours.isEmpty()) {
+            Point resident = neighbours.poll();
+            int currentColour = pixels[resident.row][resident.col];
+            if (currentColour != fromColour  || currentColour == toColour) {
+                continue;
+            }
+            List<Point> nearer = getNeighbours(pixels, resident);
+            neighbours.addAll(nearer);
+            pixels[resident.row][resident.col] = toColour;
         }
     }
 
@@ -72,17 +73,5 @@ public class PixelColourChange {
         }
 
         return neighbours;
-    }
-
-
-    private static class Point {
-        int row;
-        int col;
-
-        public Point(int row, int col) {
-
-            this.row = row;
-            this.col = col;
-        }
     }
 }

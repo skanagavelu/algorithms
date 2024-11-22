@@ -25,13 +25,13 @@ public class NextIncreasingValue {
 	}
 
 	private static void solution_O_N(int[] array) {
-		Stack s = new Stack();
-		for (int i = 0; i < array.length; i++) {
-			while (!s.isEmpty() && array[i] > (int) s.peek()) {
-				System.out.println("For " + s.pop() + "th next increasing value is: " + array[i]);
-			}
-			s.push(array[i]);
-		}
+		Stack<Integer> s = new Stack<>();
+        for (int j : array) {
+            while (!s.isEmpty() && j > s.peek()) {
+                System.out.println("For " + s.pop() + "th next increasing value is: " + j);
+            }
+            s.push(j);
+        }
 		while (!s.isEmpty()) {
 			System.out.println("For " + s.pop() + "th next increasing value is: " + -1);
 		}

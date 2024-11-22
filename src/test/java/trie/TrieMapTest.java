@@ -1,13 +1,15 @@
 package trie;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import junit.framework.TestCase;
-import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static trie.Util.generateRandomString;
 
-public class TrieMapTest extends TestCase {
+public class TrieMapTest  {
 
     @Test
     public void testValidations() {

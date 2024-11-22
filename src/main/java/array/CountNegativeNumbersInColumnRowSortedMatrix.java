@@ -12,6 +12,8 @@ public class CountNegativeNumbersInColumnRowSortedMatrix {
         countNegativeNumbers(sortedArray);
     }
 
+
+
     private static int[][] sortedArray = {
             { -3, -2, -1, 1 }, // <--- start from here
             { -2,  2,  3, 4 },
