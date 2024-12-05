@@ -10,7 +10,7 @@ package misc;
  */
 public class DisplayTheWordsInReverseOrder {
 	public static void main(String[] args) {
-		String input = "I work at xyz";
+		String input = "  hello world  ";
 		String output = getTheWordsInReverseOrder(input);
 		System.out.println(output);
 	}
@@ -19,9 +19,10 @@ public class DisplayTheWordsInReverseOrder {
 		String[] words = input.split(" ");
 		StringBuilder br = new StringBuilder();
 		for(int i = words.length-1; i >= 0; i--) { //Important for > operator in reverse order.
+			if(words[i].isEmpty()) continue;
 			br.append(words[i]);
 			br.append(" ");
 		}
-		return br.toString();
+		return br.toString().trim();
 	}
 }

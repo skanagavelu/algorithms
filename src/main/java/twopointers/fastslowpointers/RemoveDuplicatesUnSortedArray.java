@@ -1,4 +1,4 @@
-package array;
+package twopointers.fastslowpointers;
 
 import java.util.Arrays;
 

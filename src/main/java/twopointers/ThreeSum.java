@@ -1,10 +1,8 @@
-package array;
+package twopointers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * https://fizzbuzzed.com/top-interview-questions-1/
@@ -31,7 +29,7 @@ public class ThreeSum {
     public static List<List<Integer>> findThreeSum(int[] nums, int sum) {
 
         Arrays.sort(nums);
-        Set<List<Integer>> result = new HashSet<>(4);
+        List<List<Integer>> result = new ArrayList<>(4);
 
         /*
          * The way to find three sum in n^2 time after sorting
@@ -39,6 +37,11 @@ public class ThreeSum {
          * so total complexity is O(n^2)
          */
         for (int i = 0; i < nums.length; i++) {
+
+            int j = i + 1, k = nums.length -1;
+
+            // Skip duplicates creation, but above give chance of j try with duplicate
+            while (i < nums.length - 1 && nums[i] == nums[i+1]) { i++; }
 
             /*
              * The way to find two sum in n * log n time after sorting
@@ -51,16 +54,19 @@ public class ThreeSum {
              * [X, X, X, X, X]
              * A[]
              */
-            for (int j = i + 1, k = nums.length -1; j < k;) {
+            while ( j < k) {
 
-                if (nums[i] + nums[j] + nums[k] == sum) {
+                int tripletSum = nums[i] + nums[j] + nums[k];
+
+                if (tripletSum == sum) {
 
                     result.add(List.of(nums[i], nums[j], nums[k]));
 
                     while (j < nums.length - 1 && nums[j] == nums[j+1]) { j++; }
                     while (k > 0 && nums[k] == nums[k-1]) { k--; } // ensure guarding k > 0, to avoid index out of
                     j++;
-                } else if (nums[i] + nums[j] + nums[k] < sum) {
+                    k--;
+                } else if (tripletSum < sum) {
 
                     while (j < nums.length - 1 && nums[j] == nums[j+1]) { j++; } //For duplicate
                     j++;

@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class QuickSort {
 	public static void main(String[] args) {
 		int[] array = { 5, 6, 10, 3, 9, 2, 12, 1, 8, 7 };
-		quickSort(array, 0, array.length -1);
+		quickSort(array, 0, array.length - 1);
 		System.out.println(Arrays.toString(array));
 		
 		
@@ -68,31 +68,31 @@ public class QuickSort {
 	 * partitioning the other elements into two sub-arrays,
 	 * according to whether they are less than or greater than the pivot.
 	 */
-	private static void quickSort(int[] array, int p, int r) {
+	private static void quickSort(int[] array, int l, int r) {
 		//Handling array of size two
-		if( p == r-1) {
-			if (array[p] > array[r]) {
-				swap(array, p, r);
+		if(l == r-1) {
+			if (array[l] > array[r]) {
+				swap(array, l, r);
 			}
 			return;
 		}
 		
-		if(p < r) {
-			int q = partition(array, p, r);	
+		if(l < r) {
+			int q = partition(array, l, r);	
 //			System.out.println(Arrays.toString(array));
-			quickSort(array, p, q-1);
+			quickSort(array, l, q-1);
 //			System.out.println(Arrays.toString(array));
 			quickSort(array, q+1, r);
 //			System.out.println(Arrays.toString(array));
 		}
 	}
 
-	private static int partition(int[] array, int p, int r) {
+	private static int partition(int[] array, int l, int r) {
 		int pivot = array[r];
-		for (int i = p, j = r - 1; i < j ;) {
+		for (int i = l, j = r - 1; i < j ;) {
 			//Sorting the last three number
 			if(i == (j-1)) {
-				//Sorting the three number
+				//Sorting the three number a > b then a > c then again a > b
 				if (array[i] > array[j]) { 
 					swap(array, i, j);
 				}

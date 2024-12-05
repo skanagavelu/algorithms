@@ -6,18 +6,19 @@ import java.util.Arrays;
 public class MergeSortedArray {
 
   public static void main(String[] args) {
-    //    int[] nums1 = {1,2,3,0,0,0};
-    //    int[] nums2 = {2,5,6};
-    int[] nums1 = {2, 0};
-    int[] nums2 = {1};
+        int[] nums1 = {1,2,3,0,0,0};
+        int[] nums2 = {2,5,6};
+//    int[] nums1 = {2, 0};
+//    int[] nums2 = {1};
     merge(nums1, nums1.length, nums2, nums2.length);
     System.out.println(Arrays.toString(nums1));
   }
 
-  public static void merge(int[] nums1, int m, int[] nums2, int n) {
-    m--;
+  // Travel in reverse direction
+  public static void merge(int[] nums1, int k, int[] nums2, int n) {
+    k--;
     n--;
-    int k = nums1.length - 1;
+    int m = n;
     while (m >= 0 && n >= 0) {
       if (nums1[m] < nums2[n]) {
         nums1[k--] = nums2[n--];

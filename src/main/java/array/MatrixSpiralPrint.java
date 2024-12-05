@@ -113,8 +113,7 @@ public class MatrixSpiralPrint {
 	}
 	
 	
-	
-		/**
+	/**
 	 * The first solution is cumbersome of variables and it wont solve rectangular matrix
 	 * @param matrix
 	 */

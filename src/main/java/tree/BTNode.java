@@ -46,7 +46,7 @@ public class BTNode<T extends Comparable<T>> {
 		BTDisplay.printTreeNode(root);
 		
 		List a = new ArrayList();
-		buildDataArryaWithPreOrder(root, a, new Counter(0));
+		buildDataArrayWithPreOrder(root, a, new Counter(0));
 		System.out.println(a);
 	}
 	
@@ -64,7 +64,7 @@ public class BTNode<T extends Comparable<T>> {
 	}
 	
 	
-	public static <T extends Comparable<T>>  void buildDataArryaWithPreOrder(BTNode<T> root, List<T> dataArray, Counter i){
+	public static <T extends Comparable<T>>  void buildDataArrayWithPreOrder(BTNode<T> root, List<T> dataArray, Counter i){
         if(root == null) {
         	dataArray.add(null);
         	i.incrementAndGet();
@@ -72,9 +72,9 @@ public class BTNode<T extends Comparable<T>> {
         }
         dataArray.add(root.data);
     	i.incrementAndGet();
-    	buildDataArryaWithPreOrder(root.left, dataArray, i);
+    	buildDataArrayWithPreOrder(root.left, dataArray, i);
 		i.incrementAndGet();
-		buildDataArryaWithPreOrder(root.right, dataArray, i);
+		buildDataArrayWithPreOrder(root.right, dataArray, i);
 	}
 	
 	

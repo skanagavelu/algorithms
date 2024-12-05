@@ -1,7 +1,6 @@
 package graph;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class BinaryMinHeap<T extends Comparable<T>> {
@@ -14,6 +13,7 @@ public class BinaryMinHeap<T extends Comparable<T>> {
         insertionHeapify(nodes.size() - 1);
     }
 
+    
     private void insertionHeapify(int index){
 
         int parentIndex = (index - 1) / 2;

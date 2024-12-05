@@ -85,30 +85,30 @@ public class MergeSort {
 	 * Repeatedly merge sublists to produce new sorted sublists until there is only one sublist remaining. This will
 	 * be the sorted list.
 	 */
-	private static void mergeSort(int[] array, int p, int r) {
+	private static void mergeSort(int[] array, int l, int r) {
 		//Both below mid finding is fine.
-		int mid = (r - p)/2 + p;
-		int mid1 = (r + p)/2;
+		int mid = (r - l)/2 + l;
+		int mid1 = (r + l)/2;
 		if(mid != mid1) {
-			System.out.println(" Mid is mismatching:" + mid + "/" + mid1+ "  for p:"+p+"  r:"+r);
+			System.out.println(" Mid is mismatching:" + mid + "/" + mid1+ "  for p:"+l+"  r:"+r);
 		}
 		
-		if(p < r) {
-			mergeSort(array, p, mid);
+		if(l < r) {
+			mergeSort(array, l, mid);
 			mergeSort(array, mid+1, r);
 //			merge(array, p, mid, r);
-			inPlaceMerge(array, p, mid, r);
+			inPlaceMerge(array, l, mid, r);
 		}
 	}
 
-	private static void merge(int[] array, int p, int mid, int r) {
-		int lengthOfLeftArray = mid - p + 1; // This is important to add +1.
+	private static void merge(int[] array, int l, int mid, int r) {
+		int lengthOfLeftArray = mid - l + 1; // This is important to add +1.
 		int lengthOfRightArray = r - mid;
 		
 		int[] left = new int[lengthOfLeftArray];
 		int[] right = new int[lengthOfRightArray];
 		
-		for(int i = p, j = 0; i <= mid; ){
+		for(int i = l, j = 0; i <= mid; ){
 			left[j++] = array[i++];
 		}
 		
@@ -117,18 +117,18 @@ public class MergeSort {
 		}
 		
 		int i = 0, j = 0;
-		for(; i < left.length && j < right.length; ) {
+		while( i < left.length && j < right.length) {
 			if(left[i] < right[j]){
-				array[p++] = left[i++];
+				array[l++] = left[i++];
 			} else {
-				array[p++] = right[j++];
+				array[l++] = right[j++];
 			}
 		}
 		while(j < right.length){
-			array[p++] = right[j++];
+			array[l++] = right[j++];
 		} 
 		while(i < left.length){
-			array[p++] = left[i++];
+			array[l++] = left[i++];
 		}
 	}
 	

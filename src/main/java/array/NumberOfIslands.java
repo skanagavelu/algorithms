@@ -45,11 +45,21 @@ public class NumberOfIslands {
             for (int j = 0; j < pixels[0].length; j++) {
                 if (pixels[i][j] == 1) {
                     ++ counter;
-                    performColourChange(pixels, new Point(i, j), 1, 0);
+                    dfsColourChange(pixels, i, j);
+//                    performColourChange(pixels, new Point(i, j), 1, 0);
                 }
             }
         }
         return counter;
+    }
+
+    private static void dfsColourChange(int[][] grid, int i, int j) {
+        if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length || grid[i][j] != 1) return;
+        grid[i][j] = 0;
+        dfsColourChange(grid, i + 1, j);
+        dfsColourChange(grid, i - 1, j);
+        dfsColourChange(grid, i, j + 1);
+        dfsColourChange(grid, i, j - 1);
     }
 
     private static void performColourChange(int[][] pixels, Point startAt, int fromColour, int toColour) {
@@ -60,6 +70,7 @@ public class NumberOfIslands {
         }
 
         pixels[startAt.row][startAt.col] = toColour;
+
         List<Point> neighbours = getNeighbours(pixels, startAt);
         for (Point neighbour : neighbours) {
             performColourChange(pixels, neighbour, fromColour, toColour);

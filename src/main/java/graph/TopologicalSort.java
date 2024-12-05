@@ -47,22 +47,22 @@ public class TopologicalSort {
 	private <T> Stack<T> doTopologicalSort(SimpleGraph<T> graph) {
 		Set<T> visited = new HashSet<T>();
 		Stack<T> stack = new Stack();
-		for(T vertexOuter : graph.getAllVertex()) {
-			doTopologicalSortUtil(graph, vertexOuter, visited, stack);
+    for (T vertexOuter : graph.getAllVertex()) {
+      doTopologicalSortUtil(graph, vertexOuter, visited, stack);
 		}
 		return stack;
 	}
-	
+
+	/*
+	 * Topological sort won't consistently work if there is a cycle
+	 * But wont go for loop since we maintain the visited set.
+	 */
 	private <T> void doTopologicalSortUtil(SimpleGraph<T> graph, T vertex, Set<T> visited, Stack<T> stack) {
 		if(!visited.add(vertex)) { //This is important Base condition
 			return;
 		}
-		System.out.println("Node Visisted: "+ vertex);
+		System.out.println("Node Visited: "+ vertex);
 		List<T> children = graph.getAdjacencyNodes(vertex);
-		if(children == null) {
-			stack.push(vertex);
-			return;
-		}
 		for(T child : children) {
 			doTopologicalSortUtil(graph, child, visited, stack);
 		}

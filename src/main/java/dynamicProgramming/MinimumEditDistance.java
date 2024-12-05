@@ -2,6 +2,14 @@ package dynamicProgramming;
 
 import java.util.Arrays;
 
+/**
+ * You have the following three operations permitted on a word:
+ *
+ * Insert a character
+ * Delete a character
+ * Replace a character
+ * 
+ */
 public class MinimumEditDistance {
 
     public static void main(String[] args) {

@@ -42,7 +42,6 @@ public class BinarySearch {
 
 			int mid = (low + high) >>> 1; //Left shift will double the value, right shit divides by 2
 			long midVal = array[mid];
-
 			if (midVal == key) return mid;
 
 			if (midVal < key)

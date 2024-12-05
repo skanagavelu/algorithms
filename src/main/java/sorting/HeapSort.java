@@ -20,9 +20,10 @@ public class HeapSort {
 
     public void sort(int arr[]){
 
+        // Build max heap, then move the max to end
         buildHeap(arr);
 
-        //Delete 0th index and add it to last
+        //HeapSort: Delete 0th index and add it to last
         for(int i = arr.length - 1; i >= 0; i--){
             swap(arr, 0, i);
 
@@ -37,7 +38,11 @@ public class HeapSort {
         arr[y] = temp;
     }
 
-
+    /**
+     * We can build the heap by adding one by one element, n(log(n))
+     * But this reverse order does comparison of only half the elements
+     * So I believe (n/2) log(n)
+     */
     private void buildHeap(int arr[]) {
 
         for (int i = arr.length - 1; i > -1; i--) {
@@ -48,32 +53,32 @@ public class HeapSort {
     /*
      * heapify on the element, if changed then heapify on its new child position.
      */
-    private void heapify(int arr[], int element, int size) {
+    private void heapify(int arr[], int start, int end) {
 
-        int leftChildIdx = 2 * element + 1;
-        int rightChildIdx = 2 * element + 2;
+        int leftChildIdx = 2 * start + 1;
+        int rightChildIdx = 2 * start + 2;
 
-        if (leftChildIdx < size) {
-            if (rightChildIdx < size) {
-                if(arr[element] >= Math.max(arr[leftChildIdx], arr[rightChildIdx])) {
+        if (leftChildIdx < end) {
+            if (rightChildIdx < end) {
+                if(arr[start] >= Math.max(arr[leftChildIdx], arr[rightChildIdx])) {
                     //do nothing
                     return;
                 }
                 if (arr[leftChildIdx] < arr[rightChildIdx]) {
 
-                    swap(arr, element, rightChildIdx);
-                    heapify(arr, rightChildIdx, size);
+                    swap(arr, start, rightChildIdx);
+                    heapify(arr, rightChildIdx, end);
                 } else  {
 
-                    swap(arr, element, leftChildIdx);
-                    heapify(arr, leftChildIdx, size);
+                    swap(arr, start, leftChildIdx);
+                    heapify(arr, leftChildIdx, end);
                 }
             } else {
 
-                if (arr[element] < arr[leftChildIdx]) {
+                if (arr[start] < arr[leftChildIdx]) {
 
-                    swap(arr, element, leftChildIdx);
-                    heapify(arr, leftChildIdx, size);
+                    swap(arr, start, leftChildIdx);
+                    heapify(arr, leftChildIdx, end);
                 }
             }
         }

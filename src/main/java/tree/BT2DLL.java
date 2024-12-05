@@ -2,7 +2,6 @@ package tree;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  *  [] dataArray for the tree using Preorder with null for leaf; is used for serialization.
@@ -38,7 +37,7 @@ public class BT2DLL {
 		
 		//Rebuild dataArray from Tree using PreOrder
 		List a = new ArrayList();
-		BTNode.buildDataArryaWithPreOrder(root, a, new Counter(0));
+		BTNode.buildDataArrayWithPreOrder(root, a, new Counter(0));
 		System.out.println(a);
 		
 		

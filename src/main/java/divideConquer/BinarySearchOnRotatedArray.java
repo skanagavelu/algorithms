@@ -34,7 +34,6 @@ public class BinarySearchOnRotatedArray {
         while (low <= high) {
             // Avoid overflow, same as M=(L+R)/2 ===> M=low + ((high - low) / 2)
             int mid = (low + high) >>> 1;
-
             if (array[mid] == key) {
                 return mid;
             }
