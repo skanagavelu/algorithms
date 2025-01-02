@@ -2,6 +2,7 @@ package array;
 
 /*
 125. Valid Palindrome
+Two pointer towards each other
 
 Think of edge cases:
 1. It can be case sensitive

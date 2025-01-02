@@ -49,12 +49,9 @@ public class CustomStack<E> {
     
     public void removeElementAt(int index) {
         modCount++;
-        if (index >= elementCount) {
-            throw new ArrayIndexOutOfBoundsException(index + " >= " +
+        if (index < 0 || index >= elementCount) {
+            throw new ArrayIndexOutOfBoundsException(index + " < 0 or > " +
                                                      elementCount);
-        }
-        else if (index < 0) {
-            throw new ArrayIndexOutOfBoundsException(index);
         }
         int j = elementCount - index - 1;
         if (j > 0) {

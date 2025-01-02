@@ -15,8 +15,8 @@ package misc;
  */
 public class MinimumPlatformRequired {
 	public static void main(String[] args) {
-		// int [] arr = {900, 940, 950, 1100, 1500, 1800};
-		// int [] dep = {910, 1200, 1120, 1130, 1900, 2000};
+		// int [] arr = {900, 940, 950, 1130, 1500, 1800};
+		// int [] dep = {910, 1120, 1200, 1130, 1900, 2000};
 
 		int[] arr = { 900, 940, 950, 1100, 1110, 1500, 1800 };
 		int[] dep = { 910, 1200, 1120, 1130, 1120, 1900, 2000 };

@@ -18,7 +18,7 @@ public class QueueUsingTwoStack {
         output.pop();
     }
 
-    public int peek() {
+    public Integer peek() {
         if (output.empty())
             while (!input.empty())
                 output.push(input.pop());

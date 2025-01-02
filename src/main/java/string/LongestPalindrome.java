@@ -2,8 +2,10 @@ package string;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Stack;
 
+/**
+ * I think this needs dynamic programming
+ */
 public class LongestPalindrome {
 
     public static void main(String[] args) {

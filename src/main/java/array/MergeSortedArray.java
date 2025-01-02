@@ -2,7 +2,10 @@ package array;
 
 import java.util.Arrays;
 
-/** 88. Merge Sorted Array */
+/** 88. Merge Sorted Array
+ *
+ * Three pointers
+ * */
 public class MergeSortedArray {
 
   public static void main(String[] args) {

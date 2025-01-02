@@ -3,6 +3,11 @@ package cache;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Use DoublyLinkedList and HashMap
+ * So whenever node is accessed then push it to tail of the queue,
+ * So the head will have LeastRecentlyAccessed.
+ */
 public class LRU {
 
     private LinkedHashMap<Integer,Integer> cache;

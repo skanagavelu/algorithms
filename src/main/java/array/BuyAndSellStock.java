@@ -3,11 +3,15 @@ package array;
 /**
  * 121. Best Time to Buy and Sell Stock
  *
+ * Two pointer, one is low, another one (high) moving sequentially
+ * if high < low, then low gets updated, else new profit is calculated.
+ *
  * <p>Input: prices = [7,1,5,3,6,4] Output: 5
  * Explanation: Buy on day 2 (price = 1) and sell on day
  * 5 (price = 6), profit = 6-1 = 5.
  * Note that buying on day 2 and selling on day 1 is not allowed
  * because you must buy before you sell.
+ *
  */
 public class BuyAndSellStock {
 

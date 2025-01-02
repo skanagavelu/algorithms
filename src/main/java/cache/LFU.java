@@ -11,6 +11,11 @@ import java.util.TreeMap;
  *
  * Dont use priority queue that degrades performance
  * Use Map for all the purposes
+ *
+ * I believe, we can have object that holds key and frequency
+ * And add it to the treeMap in ascending order.
+ * So you know what to remove from TreeMap, and hash map for key and value.
+ * Below implementation is too much.
  */
 public class LFU<K, V> {
     private final int capacity;

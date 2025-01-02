@@ -3,6 +3,10 @@ package array;
 /**
  * 27. Remove Element
  *
+ * Two pinter (start, end) towards each other
+ * end will get replaced and incremented when element found
+ * else start will increment
+ *
  * Example 1:
  *
  * Input: nums = [3,2,2,3], val = 3

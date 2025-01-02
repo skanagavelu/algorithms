@@ -1,4 +1,4 @@
-package twopointers;
+package threepointers;
 
 public class DutchNationalFlagProblem {
 

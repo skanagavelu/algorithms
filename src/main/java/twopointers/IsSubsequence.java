@@ -17,12 +17,12 @@ public class IsSubsequence {
   public static boolean isSubsequence(String s, String t) {
     int i = 0, j = 0;
     // while loop is awesome
-    while (j < t.length()) {
+    while (j < t.length() && i < s.length()) {
       if (s.charAt(i) == t.charAt(j)) {
         i++;
       }
       j++;
     }
-    return i == s.length(); // Ternary operator for true false can be avaoided
+    return i == s.length(); // Ternary operator for true false can be avoided
   }
 }

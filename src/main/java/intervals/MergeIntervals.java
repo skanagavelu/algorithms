@@ -22,17 +22,19 @@ public class MergeIntervals {
      * it more efficient than Comparator.comparing when dealing with int
      */
     Arrays.sort(
-        intervals, Comparator.comparingInt((int[] row) -> row[0]).thenComparing(row -> row[1]));
+        intervals, Comparator.comparingInt((int[] col) -> col[0]).thenComparing(col -> col[1]));
     List<int[]> result = new LinkedList<>();
     result.add(intervals[0]);
-    for (int i = 0; i < intervals.length - 1; i++) {
-      int[] first = result.getLast();
-      int[] second = intervals[i + 1];
-      if (second[0] <= first[1]) {
+    int start = 0;
+    int end = 1;
+    for (int i = 1; i < intervals.length; i++) {
+      int[] prevInterval = result.getLast();
+      int[] curInterval = intervals[i];
+      if (curInterval[start] <= prevInterval[end]) {
         // overlaps
-        first[1] = Math.max(first[1], second[1]);
+        prevInterval[end] = Math.max(prevInterval[end], curInterval[end]);
       } else {
-        result.add(second);
+        result.add(curInterval);
       }
     }
     return result.toArray(new int[result.size()][]); // NOTE: Creating two dim array

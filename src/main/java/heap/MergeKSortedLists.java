@@ -12,8 +12,8 @@ public class MergeKSortedLists {
     PriorityQueue<ListNode> queue =
         new PriorityQueue<>(lists.length, Comparator.comparingInt(l -> l.val));
 
-    ListNode dummy = new ListNode(0);
-    ListNode tail = dummy;
+    ListNode dummyHead = new ListNode(0);
+    ListNode tail = dummyHead;
 
     // Add only head of the multiple ListNode
     for (ListNode node : lists) if (node != null) queue.add(node);
@@ -26,7 +26,7 @@ public class MergeKSortedLists {
       // Consume from the List where the poll() happened
       if (tail.next != null) queue.add(tail.next);
     }
-    return dummy.next;
+    return dummyHead.next;
   }
 
   public static class ListNode {

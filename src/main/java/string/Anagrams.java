@@ -1,12 +1,15 @@
 package string;
 
 import java.lang.reflect.Array;
-import java.util.Arrays;
 
 /*
  * An anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
  * typically using all the original letters exactly once.
  * LISTEN --> SILENT
+ *
+ * All anagrams are permutations of each other, but not all permutations are anagrams.
+ * By definition, an anagram must have meaning (be a real word or phrase),
+ * but a permutation can be any ordering of the characters without needing to have meaning.
  */
 public class Anagrams {
 	public static void main(String[] args) {
